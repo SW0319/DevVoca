@@ -27,6 +27,8 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        //nct 127 Ay-Yo
+
         findViewById<Button>(R.id.searchButton).setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
                 dao.getAll().iterator().forEach {
