@@ -7,7 +7,7 @@ import android.widget.Button
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.devvoca.Repo.AppDatabase
-import com.example.devvoca.Repo.WordList
+import com.example.devvoca.Repo.VocaList
 import com.example.devvoca.databinding.ActivityMainBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.inputButton1).setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                dao.insert(WordList(0,"단어","번역","예제","타입"))
+                dao.insert(VocaList(0,"단어","번역","예제","타입"))
             }
         }
 
