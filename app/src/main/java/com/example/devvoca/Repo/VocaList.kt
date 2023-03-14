@@ -1,11 +1,10 @@
 package com.example.devvoca.Repo
 
-import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "WordList")
-data class WordList(
+@Entity(tableName = "VocaList")
+data class VocaList(
     @PrimaryKey(autoGenerate = true) val v_no: Int = 0,
     val voca: String,
     val translate: String,
