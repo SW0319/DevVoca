@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        Log.e("test","dd")
         val db = Room.databaseBuilder(this,AppDatabase::class.java,"word").build()
         val dao = db.wordDao()
 
