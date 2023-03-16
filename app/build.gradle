@@ -6,6 +6,9 @@ plugins {
 android {
     namespace 'com.example.devvoca'
     compileSdk 33
+    dataBinding{
+        enabled = true
+    }
 
     defaultConfig {
         applicationId "com.example.devvoca"

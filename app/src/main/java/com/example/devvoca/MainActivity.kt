@@ -1,5 +1,6 @@
 package com.example.devvoca
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -35,6 +36,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.searchButton).setOnClickListener {
+            startActivity(Intent(baseContext,VocaListActivity::class.java))
+
             CoroutineScope(Dispatchers.IO).launch {
                 dao.getAll().iterator().forEach {
                     Log.e("test","번호 : ${it.v_no} voca: ${it.voca}")
