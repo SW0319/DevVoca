@@ -13,7 +13,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:paddingBottom="25dp"
+        >
 
         <TextView
             android:id="@+id/items_voca_list_vocaName"
@@ -24,14 +26,41 @@
             android:text="단어 이름"/>
 
         <TextView
-            android:id="@+id/items_voca_list_translate"
-            android:layout_marginLeft="100dp"
+            android:id="@+id/items_voca_list_vocaSpelling"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintLeft_toRightOf="@id/items_voca_list_vocaName"
             app:layout_constraintTop_toTopOf="parent"
+            android:text="[발음 기호]"/>
+
+        <TextView
+            android:id="@+id/items_voca_list_translate"
+            android:layout_marginLeft="100dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:text="해석 이 들어가는 공간"/>
 
+        <TextView
+            android:id="@+id/items_voca_list_example"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/items_voca_list_vocaName"
+            android:layout_marginTop="10dp"
+            android:text="예제 문장이 들어가는 공간"/>
+
+        <TextView
+            android:id="@+id/items_voca_list_exampleTranslate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/items_voca_list_vocaName"
+            android:layout_marginTop="10dp"
+            android:text="예제의 해석 이 들어가는 공간"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

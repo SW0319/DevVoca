@@ -22,7 +22,11 @@ class VocaListAdapter(data: ArrayList<VocaList>) : RecyclerView.Adapter<VocaList
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.view.itemsVocaListVocaName.text = dataList[position].voca
+        holder.view.itemsVocaListVocaSpelling.text = dataList[position].vocaReading
         holder.view.itemsVocaListTranslate.text= dataList[position].translate
+        holder.view.itemsVocaListExample.text = dataList[position].example
+        holder.view.itemsVocaListExampleTranslate.text = dataList[position].devType
+
     }
 
     override fun getItemCount(): Int {

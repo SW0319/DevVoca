@@ -29,7 +29,8 @@ object VocaListViewModel{
     }
 
     //추가 기능
-    suspend fun insertVoca(dbType: String,voca:String, translate:String, example:String, devType: String) = insertVoca(dbType, VocaList(0,voca,translate,example,devType))
+    suspend fun insertVoca(dbType: String,voca:String, vocaReading : String, translate:String, example:String, devType: String) =
+        insertVoca(dbType, VocaList(0,voca,vocaReading,translate,example,devType))
 
     suspend fun insertVoca(dbType: String,vocaList: VocaList)
     {

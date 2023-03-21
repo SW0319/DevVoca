@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
 
         binding.inputButton1.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                VocaListViewModel.insertVoca(DataModel.localDB, VocaList(2,"예제를 넣어보자","해석","예제","개발타입"))
+                VocaListViewModel.insertVoca(DataModel.localDB, VocaList(2,"예제를 넣어보자","Spelling","해석","예제","개발타입"))
             }
         }
 

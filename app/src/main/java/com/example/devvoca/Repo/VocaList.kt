@@ -7,6 +7,7 @@ import androidx.room.PrimaryKey
 data class VocaList(
     @PrimaryKey(autoGenerate = true) val v_no: Int = 0,
     val voca: String,
+    val vocaReading : String,
     val translate: String,
     val example: String,
     val devType: String,
