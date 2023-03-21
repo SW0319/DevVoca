@@ -9,11 +9,11 @@ class VocaListViewModel{
     //업데이트 삭제 선호
 
     //조회기능
-    fun readVocaList()
+    fun readVocaList(dbType: String)
     {
 
     }
-    fun readAllVocaList()
+    fun readAllVocaList(dbType: String)
     {
 
     }
@@ -24,7 +24,7 @@ class VocaListViewModel{
 
 
     }
-    fun insertVoca(vocaList: VocaList)
+    fun insertVoca(dbType: String,vocaList: VocaList)
     {
 
     }

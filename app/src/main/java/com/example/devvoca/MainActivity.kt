@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Button
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import com.example.devvoca.Model.DataModel
 import com.example.devvoca.Repo.AppDatabase
 import com.example.devvoca.Repo.VocaList
 import com.example.devvoca.databinding.ActivityMainBinding
@@ -25,21 +26,18 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Log.e("test","dd")
-        val db = Room.databaseBuilder(this,AppDatabase::class.java,"word").build()
-        val dao = db.wordDao()
 
-        findViewById<Button>(R.id.inputButton1).setOnClickListener {
+        binding.inputButton1.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
-                dao.insert(VocaList(0,"단어","번역","예제","타입"))
+                DataModel.wordDao.insert(VocaList(0,"단어","번역","예제","타입"))
             }
         }
 
-        findViewById<Button>(R.id.searchButton).setOnClickListener {
+        binding.searchButton.setOnClickListener {
             startActivity(Intent(baseContext,VocaListActivity::class.java))
 
             CoroutineScope(Dispatchers.IO).launch {
-                dao.getAll().iterator().forEach {
+                DataModel.wordDao.getAll().iterator().forEach {
                     Log.e("test","번호 : ${it.v_no} voca: ${it.voca}")
                 }
             }
