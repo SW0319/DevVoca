@@ -7,12 +7,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.devvoca.Repo.VocaList
 import com.example.devvoca.databinding.ItemsVocaListBinding
 
-class VocaListAdapter : RecyclerView.Adapter<VocaListAdapter.ViewHolder>() {
+class VocaListAdapter(data: ArrayList<VocaList>) : RecyclerView.Adapter<VocaListAdapter.ViewHolder>() {
 
-    var data : ArrayList<VocaList> = ArrayList()
+    var dataList : ArrayList<VocaList>
 
     init {
-        data.add(VocaList(0,"영어","해석","예제","타입"))
+        dataList = data
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,12 +21,12 @@ class VocaListAdapter : RecyclerView.Adapter<VocaListAdapter.ViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.view.itemsVocaListVocaName.text = data[position].voca
-        holder.view.itemsVocaListTranslate.text= data[position].translate
+        holder.view.itemsVocaListVocaName.text = dataList[position].voca
+        holder.view.itemsVocaListTranslate.text= dataList[position].translate
     }
 
     override fun getItemCount(): Int {
-        return data.size
+        return dataList.size
     }
 
     inner class ViewHolder(private val binding: ItemsVocaListBinding) : RecyclerView.ViewHolder(binding.root)

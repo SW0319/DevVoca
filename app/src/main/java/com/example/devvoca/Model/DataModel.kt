@@ -12,6 +12,9 @@ object DataModel {
     lateinit var wordDao: WordDao
     lateinit var completeVocaDao: CompleteVocaDao
 
+    const val localDB = "Room"
+    const val serverDB = ""
+
     fun init(context: Context)
     {
         appDatabase = Room.databaseBuilder(context, AppDatabase::class.java,"vocaList").build()
