@@ -21,8 +21,8 @@
 
     <fragment
         android:id="@+id/navigation_my_page"
-        android:name="com.example.devvoca.MyPageFragment"
+        android:name="com.example.devvoca.VocaListFragment"
         android:label="@string/my_page_fragment"
-        tools:layout="@layout/fragment_my_page" >
+        tools:layout="@layout/fragment_voca_list" >
     </fragment>
 </navigation>

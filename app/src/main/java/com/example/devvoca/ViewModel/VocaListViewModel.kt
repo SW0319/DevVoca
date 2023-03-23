@@ -1,15 +1,22 @@
 package com.example.devvoca.ViewModel
 
+import android.util.Log
 import com.example.devvoca.Model.DataModel
 import com.example.devvoca.Repo.VocaList
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.*
 
 object VocaListViewModel{
 
     var wordLists : ArrayList<VocaList> = ArrayList()
 
     //업데이트 삭제 선호
+
+    init {
+        CoroutineScope(Dispatchers.IO)
+            .launch {
+                readAllVocaList(DataModel.localDB)
+            }
+    }
 
     //조회기능
     fun readVocaList(dbType: String)
@@ -20,7 +27,8 @@ object VocaListViewModel{
     {
             when (dbType) {
                 DataModel.localDB -> {
-                    wordLists.addAll(DataModel.wordDao.getAll())
+
+                    wordLists.addAll(DataModel.wordDao.getAll().apply { Log.e("test","사이즈 : ${size}") })
                 }
                 DataModel.serverDB -> {
                     //TODO : 백엔드 필요
