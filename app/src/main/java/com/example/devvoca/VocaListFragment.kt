@@ -29,7 +29,7 @@ class VocaListFragment : Fragment() {
         binding.vocalistRecyclerview.adapter = VocaListAdapter(VocaListViewModel.wordLists)
         binding.vocalistRecyclerview.layoutManager = LinearLayoutManager(binding.vocalistRecyclerview.context)
         return binding.root
-        //test
+        //test2
     }
 
     override fun onDestroyView() {
