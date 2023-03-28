@@ -15,4 +15,8 @@
         <item name="android:color" >@color/purple_500</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.DevVoca.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.DevVoca.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
