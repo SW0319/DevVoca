@@ -24,7 +24,6 @@ import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
 
-    //asdasdasd
 
     private lateinit var binding: ActivityMainBinding
 
