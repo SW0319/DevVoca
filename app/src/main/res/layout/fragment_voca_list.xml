@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".VocaListFragment"
-    android:background="@color/gray"
-    >
+    tools:context=".VocaListFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -17,17 +15,26 @@
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            app:title="단어장"
+            app:title="즐겨찾기"
             app:navigationIcon="@drawable/baseline_book_24"
+
+            android:id="@+id/fragment_toolbar"
             />
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="100dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_toolbar"
+            android:layout_marginLeft="15dp"
             android:id="@+id/vocalist_progressText"
-            />
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/baseline_event_24"/>
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vocalist_recyclerview"
@@ -36,6 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="580dp"
             tools:listitem="@layout/items_voca_list"
+            android:layout_marginLeft="15dp"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
