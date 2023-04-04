@@ -1,19 +1,22 @@
 package com.example.devvoca.ViewModel
 
 import android.util.Log
+import androidx.recyclerview.widget.RecyclerView
 import com.example.devvoca.Model.DataModel
 import com.example.devvoca.Repo.VocaList
+import com.example.devvoca.VocaListAdapter
 import kotlinx.coroutines.*
 
 object VocaListViewModel{
 
     var wordLists : ArrayList<VocaList> = ArrayList()
-
+    lateinit var adapter: RecyclerView.Adapter<*>
     //업데이트 삭제 선호
 
-    init {
-        CoroutineScope(Dispatchers.IO)
-            .launch {
+    fun init(adapter: RecyclerView.Adapter<*>)
+    {
+        this.adapter = adapter
+        runBlocking(Dispatchers.IO) {
                 readAllVocaList(DataModel.localDB)
             }
     }
@@ -34,6 +37,7 @@ object VocaListViewModel{
                     //TODO : 백엔드 필요
                 }
             }
+        adapter.notifyDataSetChanged()
     }
 
     //추가 기능

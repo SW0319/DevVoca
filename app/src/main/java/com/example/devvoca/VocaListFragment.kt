@@ -27,9 +27,9 @@ class VocaListFragment : Fragment() {
     ): View? {
         _binding = FragmentVocaListBinding.inflate(inflater, container, false)
         binding.vocalistRecyclerview.adapter = VocaListAdapter(VocaListViewModel.wordLists)
+        VocaListViewModel.init(binding.vocalistRecyclerview?.adapter!!)
         binding.vocalistRecyclerview.layoutManager = LinearLayoutManager(binding.vocalistRecyclerview.context)
         return binding.root
-        //test2
     }
 
     override fun onDestroyView() {
