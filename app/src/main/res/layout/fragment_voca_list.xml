@@ -4,44 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="20dp"
     tools:context=".VocaListFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar
+        <LinearLayout
+            android:id="@+id/TopList"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            app:title="즐겨찾기"
-            app:navigationIcon="@drawable/baseline_book_24"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            android:id="@+id/fragment_toolbar"
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/baseline_book_24"
+                />
+            <TextView
+                android:layout_marginLeft="20dp"
+                app:layout_constraintLeft_toRightOf="@id/progress_image"
+                app:layout_constraintTop_toTopOf="@id/progress_image"
+                app:layout_constraintBottom_toBottomOf="@id/progress_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="단어장"
+                android:textSize="22sp"
+                />
+
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/titleBottom"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/TopList"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="20dp"
+            android:background="@color/gray"
             />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="60dp"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fragment_toolbar"
+            app:layout_constraintTop_toBottomOf="@id/titleBottom"
             android:layout_marginLeft="15dp"
-            android:id="@+id/vocalist_progressText"
+            android:id="@+id/vocalist_progressLayout"
+            android:padding="0dp"
+            android:gravity="top"
             android:orientation="horizontal">
 
+
             <ImageView
+                android:layout_marginTop="5dp"
+                android:id="@+id/progress_image"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/baseline_label_important_24"/>
+
+            <TextView
+                android:layout_marginLeft="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+
+
+                android:textColor="@color/black"
+                android:text="진행률"
+                android:textSize="22sp"
+                />
+
+            <TextView
+                android:layout_marginLeft="40dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/baseline_event_24"/>
+                android:text="100%"
+                android:textSize="22sp"
+                />
+            <Button
+                android:layout_marginLeft="70dp"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:text="학습"
+
+                />
+
         </LinearLayout>
+
+        <TextView
+            android:id="@+id/progressBottom"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vocalist_progressLayout"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginHorizontal="20dp"
+            android:background="@color/gray"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vocalist_recyclerview"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vocalist_progressText"
+            app:layout_constraintTop_toBottomOf="@id/vocalist_progressLayout"
             android:layout_width="match_parent"
-            android:layout_height="580dp"
+            android:layout_height="540dp"
             tools:listitem="@layout/items_voca_list"
             android:layout_marginLeft="15dp"
             />
