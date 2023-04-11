@@ -9,7 +9,7 @@ object RetrofitCon {
     var retrofit: Retrofit
     var url = "https://test.devvoca.p-e.kr/"
     private var authService : AuthService
-
+    private var wordService : WordService
 
     init {
         retrofit = Retrofit.Builder()
@@ -17,12 +17,17 @@ object RetrofitCon {
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
             .build()
 
-       authService = retrofit.create(AuthService::class.java)
+        authService = retrofit.create(AuthService::class.java)
+        wordService = retrofit.create(WordService::class.java)
     }
 
 
     fun getAuthService(): AuthService {
         return authService
+    }
+
+    fun getWordService() : WordService{
+        return wordService
     }
 
 }
