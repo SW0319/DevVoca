@@ -15,13 +15,11 @@ import retrofit2.Response
 object VocaListViewModel : Callback<List<VocaList>>{
 
     lateinit var wordLists : ObservableArrayList<VocaList>
-    lateinit var adapter: RecyclerView.Adapter<*>
     //업데이트 삭제 선호
     lateinit var wordService: WordService
 
-    fun init(adapter: RecyclerView.Adapter<*>, wordlist :ObservableArrayList<VocaList>)
+    fun init(wordlist :ObservableArrayList<VocaList>)
     {
-        this.adapter = adapter
         wordLists = wordlist
         wordService = RetrofitCon.getWordService()
         runBlocking(Dispatchers.IO) {
@@ -42,7 +40,6 @@ object VocaListViewModel : Callback<List<VocaList>>{
                     //TODO : 백엔드 필요
                 }
             }
-        adapter.notifyDataSetChanged()
     }
 
     suspend fun downloadVocaListFrom(type: String)  //서버로부터 단어 목록을 가져오는 함수

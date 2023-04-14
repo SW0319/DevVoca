@@ -32,16 +32,12 @@ class VocaListFragment : Fragment() {
             activity?.runOnUiThread {
                 binding.vocalistRecyclerview.adapter?.notifyDataSetChanged()
             }
-
         }
 
         _binding = FragmentVocaListBinding.inflate(inflater, container, false)
         binding.vocalistRecyclerview.adapter = VocaListAdapter(list)
-        VocaListViewModel.init(binding.vocalistRecyclerview?.adapter!!,list)
+        VocaListViewModel.init(list)
         binding.vocalistRecyclerview.layoutManager = LinearLayoutManager(binding.vocalistRecyclerview.context)
-
-
-
 
         return binding.root
     }
