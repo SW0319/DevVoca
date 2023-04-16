@@ -1,10 +1,19 @@
 package com.example.devvoca
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.devvoca.ViewModel.VocaListViewModel
+import com.example.devvoca.databinding.FragmentMyPageBinding
+import com.github.mikephil.charting.data.BarEntry
+import com.github.mikephil.charting.data.PieData
+import com.github.mikephil.charting.data.PieDataSet
+import com.github.mikephil.charting.data.PieEntry
+import com.github.mikephil.charting.data.RadarEntry
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,16 +26,13 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class MyPageFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    private var _binding : FragmentMyPageBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -34,26 +40,26 @@ class MyPageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_page, container, false)
-    }
+        _binding = FragmentMyPageBinding.inflate(inflater,container,false)
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment MyPageFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MyPageFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        //reverseLayout : true로 하면 거꾸로 배치됨
+        binding.myPageBadgeView
+            .apply {
+                layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+                //adapter = ?
             }
+
+
+        with(binding.myPageChartView)
+        {
+            data = PieData(PieDataSet(arrayListOf(PieEntry(2F,"범주1"),PieEntry(5F,"범주2"),PieEntry(10F,"범주3")),
+                ""
+            ).apply {
+                colors = listOf(Color.BLACK, Color.BLUE, Color.GRAY)
+            })
+        }
+
+
+        return binding.root
     }
 }

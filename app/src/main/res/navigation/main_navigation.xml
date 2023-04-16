@@ -8,21 +8,21 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.devvoca.HomeFragment"
-        android:label="@string/home_fragment"
-        tools:layout="@layout/fragment_home">
+        android:label="@string/favorite_fragment"
+        tools:layout="@layout/fragment_home" >
     </fragment>
 
     <fragment
         android:id="@+id/navigation_favorite"
-        android:name="com.example.devvoca.FavoriteFragment"
+        android:name="com.example.devvoca.VocaListFragment"
         android:label="@string/favorite_fragment"
-        tools:layout="@layout/fragment_favorite" >
+        tools:layout="@layout/fragment_voca_list" >
     </fragment>
 
     <fragment
         android:id="@+id/navigation_my_page"
-        android:name="com.example.devvoca.VocaListFragment"
+        android:name="com.example.devvoca.MyPageFragment"
         android:label="@string/my_page_fragment"
-        tools:layout="@layout/fragment_voca_list" >
+        tools:layout="@layout/fragment_my_page" >
     </fragment>
 </navigation>

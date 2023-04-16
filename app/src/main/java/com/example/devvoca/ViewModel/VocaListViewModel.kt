@@ -1,28 +1,34 @@
 package com.example.devvoca.ViewModel
 
+import ObservableArrayList
 import android.util.Log
+import androidx.recyclerview.widget.RecyclerView
 import com.example.devvoca.Model.DataModel
+import com.example.devvoca.Model.RetrofitCon
+import com.example.devvoca.Model.WordService
 import com.example.devvoca.Repo.VocaList
 import kotlinx.coroutines.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-object VocaListViewModel{
+object VocaListViewModel : Callback<List<VocaList>>{
 
-    var wordLists : ArrayList<VocaList> = ArrayList()
-
+    lateinit var wordLists : ObservableArrayList<VocaList>
     //업데이트 삭제 선호
+    lateinit var wordService: WordService
 
-    init {
-        CoroutineScope(Dispatchers.IO)
-            .launch {
-                readAllVocaList(DataModel.localDB)
+    fun init(wordlist :ObservableArrayList<VocaList>)
+    {
+        wordLists = wordlist
+        wordService = RetrofitCon.getWordService()
+        runBlocking(Dispatchers.IO) {
+            DataModel.wordDao.removeAll()
+            wordLists.clear()
+            downloadVocaListFrom(DataModel.serverDB)
             }
     }
 
-    //조회기능
-    fun readVocaList(dbType: String)
-    {
-
-    }
     suspend fun readAllVocaList(dbType: String)
     {
             when (dbType) {
@@ -36,21 +42,49 @@ object VocaListViewModel{
             }
     }
 
-    //추가 기능
-    suspend fun insertVoca(dbType: String,voca:String, vocaReading : String, translate:String, example:String, devType: String) =
-        insertVoca(dbType, VocaList(0,voca,vocaReading,translate,example,devType))
-
-    suspend fun insertVoca(dbType: String,vocaList: VocaList)
+    suspend fun downloadVocaListFrom(type: String)  //서버로부터 단어 목록을 가져오는 함수
     {
-        when(dbType)
+        when (type)
         {
-            DataModel.localDB -> {
-                DataModel.wordDao.insert(vocaList)
-                wordLists.add(vocaList)
-            }
-            DataModel.serverDB -> {
-                //TODO : 백엔드 확정되면 작업해야됨
+            DataModel.serverDB -> { //AWS Server
+
+                if(wordLists.isEmpty()) //아무것도 없을 경우
+                {
+                    wordService.downloadAllVocaLists().enqueue(this)
+                }
+                else
+                {
+                    wordService.downloadNewVocaLists(lastVocaList = wordLists.last()).enqueue(this)
+                }
             }
         }
+    }
+
+    //추가 기능
+
+    fun addVocaListsToLocal(vocaList: List<VocaList>)
+    {
+        DataModel.wordDao.insertAll(*vocaList.toTypedArray().apply {
+            forEach {
+                Log.e("test","v_no 값 : ${it.v_no}")
+
+            }
+            wordLists.addAll(this)
+        })
+    }
+
+    override fun onResponse(call: Call<List<VocaList>>, response: Response<List<VocaList>>) {
+        Log.e("test","${response.body().toString()}")
+        if(response.isSuccessful)
+        {
+
+         runBlocking(Dispatchers.IO) {
+             addVocaListsToLocal(response.body()!!)
+            }
+        }
+    }
+
+    override fun onFailure(call: Call<List<VocaList>>, t: Throwable) {
+
     }
 }
