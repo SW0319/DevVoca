@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
 
         navView.setupWithNavController(navController)
 
+        //test
 /*
         binding.inputButton1.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
