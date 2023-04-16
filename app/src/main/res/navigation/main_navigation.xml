@@ -8,8 +8,8 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.devvoca.HomeFragment"
-        android:label="@string/home_fragment"
-        tools:layout="@layout/fragment_home">
+        android:label="@string/favorite_fragment"
+        tools:layout="@layout/fragment_home" >
     </fragment>
 
     <fragment
