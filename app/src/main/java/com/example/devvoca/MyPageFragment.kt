@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.devvoca.ViewModel.VocaListViewModel
 import com.example.devvoca.databinding.FragmentMyPageBinding
 import com.github.mikephil.charting.data.BarEntry
 import com.github.mikephil.charting.data.PieData
@@ -40,6 +42,12 @@ class MyPageFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentMyPageBinding.inflate(inflater,container,false)
 
+        //reverseLayout : true로 하면 거꾸로 배치됨
+        binding.myPageBadgeView
+            .apply {
+                layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+                //adapter = ?
+            }
 
 
         with(binding.myPageChartView)

@@ -3,12 +3,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FavoriteFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".FavoriteFragment"
+    android:layout_marginTop="20dp"
+    android:layout_marginHorizontal="5dp"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+<!--    즐겨찾기 fragment-->
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="favorite_fragment" />
+        android:layout_height="match_parent">
+        <LinearLayout
+        android:id="@+id/TopList"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/baseline_star_24"
+            />
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="즐겨찾기"
+            android:textSize="22sp"
+            />
+    </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            app:layout_constraintLeft_toLeftOf="@id/TopList"
+            app:layout_constraintTop_toBottomOf="@id/TopList"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.9"
+            tools:listitem="@layout/items_voca_list"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

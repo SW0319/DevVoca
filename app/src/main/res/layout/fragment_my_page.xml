@@ -75,7 +75,7 @@
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:id="@+id/myPage_MidPanel"
             android:layout_marginTop="50dp"
             android:layout_width="match_parent"
@@ -83,6 +83,7 @@
             app:layout_constraintHeight_percent="0.2"
             app:layout_constraintTop_toBottomOf="@id/myPage_topPanel"
             app:layout_constraintLeft_toLeftOf="parent"
+            android:orientation="vertical"
             android:background="@color/gray">
 
             <TextView
@@ -94,22 +95,21 @@
                 android:textSize="24sp"
                 />
 
-            <TextView
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/myPage_badgeView"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginTop="50dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="recyclerview로 뱃지 목록이 열단위 지나가도록 설정"
                 />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/myPage_BottomPanel"
             android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.3"
+            app:layout_constraintHeight_percent="0.35"
             app:layout_constraintTop_toBottomOf="@id/myPage_MidPanel"
             app:layout_constraintLeft_toLeftOf="parent"
             android:background="@color/gray">
