@@ -1,5 +1,6 @@
 package com.example.devvoca.presentation.view
 
+import ObservableArrayList
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -7,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.MainThread
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +19,7 @@ import com.example.devvoca.domain.model.MyPageInfo
 import com.example.devvoca.domain.usecase.MyPageFragmentUseCase
 import com.example.devvoca.presentation.fragmentadapter.MyPageFravoriteViewAdapter
 import com.example.devvoca.presentation.viewmodel.MyPageViewModel
+import java.util.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -35,7 +36,8 @@ class MyPageFragment : Fragment() {
     private var _binding : FragmentMyPageBinding? = null
     private val binding get() = _binding!!
 
-    lateinit var mypageViewModel: MyPageViewModel
+    lateinit var myPageViewModel: MyPageViewModel
+    lateinit var observableArrayList: ObservableArrayList<FavoriteVocaGroup>
     var d = MutableLiveData<MyPageInfo>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,7 +50,7 @@ class MyPageFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentMyPageBinding.inflate(inflater,container,false)
-        mypageViewModel = MyPageViewModel(MyPageFragmentUseCase(MyPageRepositoryImpl()))
+        myPageViewModel = MyPageViewModel(MyPageFragmentUseCase(MyPageRepositoryImpl()))
 
         setListener()
 
@@ -61,16 +63,15 @@ class MyPageFragment : Fragment() {
             }
 
         binding.myPageFavoriteView.apply {
-
+            observableArrayList = ObservableArrayList({
+                adapter?.notifyDataSetChanged()
+            }, {
+                adapter?.notifyDataSetChanged()
+            })
             layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-            adapter = MyPageFravoriteViewAdapter(MyPageFavoriteListViewModel().apply {
-                addVocaGroup(FavoriteVocaGroup(1,"테스트1",))
-                addVocaGroup(FavoriteVocaGroup(2,"테스트2",))
-                addVocaGroup(FavoriteVocaGroup(3,"테스트3",))
-                addVocaGroup(FavoriteVocaGroup(4,"테스트4",))
-                addVocaGroup(FavoriteVocaGroup(5,"테스트5",))
-            }.getList())
+            adapter = MyPageFravoriteViewAdapter(observableArrayList)
         }
+
 
         readData()
 
@@ -79,10 +80,12 @@ class MyPageFragment : Fragment() {
 
     private fun readData()
     {
-        d.value = mypageViewModel.getMyInfo()
+        d.value = myPageViewModel.getMyInfo();
+        observableArrayList.addAll(myPageViewModel.getMyFavoriteGroup())
+
     }
 
-    fun setListener()
+    private fun setListener()
     {
         d.observe(viewLifecycleOwner)
         {

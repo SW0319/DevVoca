@@ -1,6 +1,7 @@
 package com.example.devvoca.domain.usecase
 
 import com.example.devvoca.data.repository.MyPageRepositoryImpl
+import com.example.devvoca.domain.model.FavoriteVocaGroup
 import com.example.devvoca.domain.model.MyPageInfo
 
 class MyPageFragmentUseCase(private val myPageRepositoryImpl: MyPageRepositoryImpl) {   //데이터를 가져오는 기능 별 정리
@@ -12,9 +13,9 @@ class MyPageFragmentUseCase(private val myPageRepositoryImpl: MyPageRepositoryIm
     {
         return myPageRepositoryImpl.getMyInfo()
     }
-    fun getMyFavoriteGroupInfo()    //나의 즐겨찾기 정보를 가져옴
+    fun getMyFavoriteGroupInfo() : List<FavoriteVocaGroup>    //나의 즐겨찾기 정보를 가져옴
     {
-//        return myPageRepositoryImpl.getMyFavoriteGroupInfo()
+        return myPageRepositoryImpl.getMyFavoriteGroupInfo()
     }
 
     fun getMyBadgeInfo()    //나의 뱃지를 가져옴 (일종의 업적 기능)

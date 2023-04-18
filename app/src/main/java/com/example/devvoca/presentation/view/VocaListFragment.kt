@@ -22,11 +22,17 @@ class VocaListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        var list = ObservableArrayList<VocaList> {
+        var list = ObservableArrayList<VocaList>({
             activity?.runOnUiThread {
                 binding.vocalistRecyclerview.adapter?.notifyDataSetChanged()
             }
-        }
+
+        }, {
+            activity?.runOnUiThread {
+                binding.vocalistRecyclerview.adapter?.notifyDataSetChanged()
+            }
+
+        })
 
         _binding = FragmentVocaListBinding.inflate(inflater, container, false)
         binding.vocalistRecyclerview.adapter = VocaListAdapter(list)
