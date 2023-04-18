@@ -1,7 +1,7 @@
 package com.example.devvoca.presentation.viewmodel
 
 import android.util.Log
-import com.example.devvoca.data.repository.RetrofitCon
+import com.example.devvoca.data.api.RetrofitCon
 import com.example.devvoca.domain.model.FavoriteVocaGroup
 import retrofit2.Call
 import retrofit2.Callback

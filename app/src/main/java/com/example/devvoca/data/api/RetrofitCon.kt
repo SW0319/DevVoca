@@ -1,7 +1,5 @@
-package com.example.devvoca.data.repository
+package com.example.devvoca.data.api
 
-import com.example.devvoca.data.api.AuthService
-import com.example.devvoca.data.api.WordService
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

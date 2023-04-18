@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import com.example.devvoca.R
-import com.example.devvoca.data.repository.RetrofitCon
+import com.example.devvoca.data.api.RetrofitCon
 import com.example.devvoca.domain.model.LoginToken
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.SignInClient

@@ -3,7 +3,7 @@ package com.example.devvoca.presentation.viewmodel
 import ObservableArrayList
 import android.util.Log
 import com.example.devvoca.data.repository.DataModel
-import com.example.devvoca.data.repository.RetrofitCon
+import com.example.devvoca.data.api.RetrofitCon
 import com.example.devvoca.data.api.WordService
 import com.example.devvoca.domain.model.VocaList
 import kotlinx.coroutines.*
