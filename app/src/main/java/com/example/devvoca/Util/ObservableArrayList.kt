@@ -1,11 +1,12 @@
-class ObservableArrayList<T>(     private val onItemListAddedCallback: (item : Collection<T>) -> Unit
-                             ) : ArrayList<T>() {
+import com.example.devvoca.Util.ObservableArrayListCallback
+
+class ObservableArrayList<T>(var onItemAddedCallback:(T) -> Unit,var onItemListAddedCallback:(Collection<T>) -> Unit) : ArrayList<T>() {
 
     override fun add(element: T): Boolean {
         val result = super.add(element)
         if(result)
         {
-//            onItemAddedCallback(element)
+            onItemAddedCallback
         }
         return result
     }
@@ -14,7 +15,7 @@ class ObservableArrayList<T>(     private val onItemListAddedCallback: (item : C
         val result = super.addAll(elements)
         if(result)
         {
-            onItemListAddedCallback(elements)
+            onItemListAddedCallback
         }
         return result
     }
