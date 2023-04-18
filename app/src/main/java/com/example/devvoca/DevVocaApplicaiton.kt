@@ -1,7 +1,7 @@
 package com.example.devvoca
 
 import android.app.Application
-import com.example.devvoca.Model.DataModel
+import com.example.devvoca.data.repository.DataModel
 
 class DevVocaApplicaiton : Application() {
 

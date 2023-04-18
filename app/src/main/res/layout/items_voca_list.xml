@@ -7,7 +7,7 @@
     <data>
         <variable
             name="item"
-            type="com.example.devvoca.VocaListAdapter.ViewHolder" />
+            type="com.example.devvoca.presentation.fragmentadapter.VocaListAdapter" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
