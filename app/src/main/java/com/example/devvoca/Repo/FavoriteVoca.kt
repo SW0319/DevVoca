@@ -8,5 +8,7 @@ data class FavoriteVoca(
     @PrimaryKey var f_no : Int,
     var v_no : Int,
     var prefer: Int,
-    var addDate: String
+    var addDate: String,
+    var tag:String = "default",
+
 )

@@ -1,19 +1,14 @@
 package com.example.devvoca
 
-import android.graphics.Color
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.devvoca.ViewModel.VocaListViewModel
+import com.example.devvoca.Repo.FavoriteVocaGroup
+import com.example.devvoca.ViewModel.MyPageFavoriteListViewModel
 import com.example.devvoca.databinding.FragmentMyPageBinding
-import com.github.mikephil.charting.data.BarEntry
-import com.github.mikephil.charting.data.PieData
-import com.github.mikephil.charting.data.PieDataSet
-import com.github.mikephil.charting.data.PieEntry
-import com.github.mikephil.charting.data.RadarEntry
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,16 +44,17 @@ class MyPageFragment : Fragment() {
                 //adapter = ?
             }
 
+        binding.myPageFavoriteView.apply {
 
-        with(binding.myPageChartView)
-        {
-            data = PieData(PieDataSet(arrayListOf(PieEntry(2F,"범주1"),PieEntry(5F,"범주2"),PieEntry(10F,"범주3")),
-                ""
-            ).apply {
-                colors = listOf(Color.BLACK, Color.BLUE, Color.GRAY)
-            })
+            layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
+            adapter = MyPageFravoriteViewAdapter(MyPageFavoriteListViewModel().apply {
+                addVocaGroup(FavoriteVocaGroup(1,"테스트1",))
+                addVocaGroup(FavoriteVocaGroup(2,"테스트2",))
+                addVocaGroup(FavoriteVocaGroup(3,"테스트3",))
+                addVocaGroup(FavoriteVocaGroup(4,"테스트4",))
+                addVocaGroup(FavoriteVocaGroup(5,"테스트5",))
+            }.getList())
         }
-
 
         return binding.root
     }

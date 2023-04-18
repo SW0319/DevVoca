@@ -1,5 +1,6 @@
 package com.example.devvoca.Model
 
+import com.example.devvoca.Repo.FavoriteVocaGroup
 import com.example.devvoca.Repo.LoginToken
 import com.example.devvoca.Repo.VocaList
 import retrofit2.Call
@@ -16,4 +17,7 @@ interface WordService {
 
     @POST("api/word/wordRanking")
     fun getWordRanking() : Call<List<VocaList>>
+
+    @POST("api/word/getFVocaGroup")
+    fun getWordGroup() : Call<List<FavoriteVocaGroup>>
 }
