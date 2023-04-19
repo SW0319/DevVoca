@@ -37,9 +37,13 @@ class MyPageRepositoryImpl : MyPageRepository{
 
         //Test 데이터 return
         var test = ArrayList<FavoriteVocaGroup>()
-        test.add(FavoriteVocaGroup(1,"테스트입니다."))
-        test.add(FavoriteVocaGroup(2,"MyPageRepositoryImpl의 데이터"))
-        test.add(FavoriteVocaGroup(355,"MyPageRepositoryImpl의 데이터!!"))
+        test.add(FavoriteVocaGroup(1,"Android"))
+        test.add(FavoriteVocaGroup(2,"기본 컴퓨터 지식 관련"))
+        test.add(FavoriteVocaGroup(3,"Stack OVerFlow 자주 등장"))
+        test.add(FavoriteVocaGroup(4,"ChatGPT는 신이야!"))
+        test.add(FavoriteVocaGroup(5,"기타 잡다한거 보관"))
+        test.add(FavoriteVocaGroup(6,"흐에에에ㅔ"))
+
 
         return test
     }
