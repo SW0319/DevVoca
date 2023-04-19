@@ -1,6 +1,7 @@
 package com.example.devvoca.data.repository
 
 import com.example.devvoca.data.api.RetrofitCon
+import com.example.devvoca.domain.model.Badge
 import com.example.devvoca.domain.model.FavoriteVocaGroup
 import com.example.devvoca.domain.model.MyPageInfo
 import retrofit2.Call
@@ -33,6 +34,8 @@ class MyPageRepositoryImpl : MyPageRepository{
 //            }
 //        })
 
+
+        //Test 데이터 return
         var test = ArrayList<FavoriteVocaGroup>()
         test.add(FavoriteVocaGroup(1,"테스트입니다."))
         test.add(FavoriteVocaGroup(2,"MyPageRepositoryImpl의 데이터"))
@@ -41,7 +44,12 @@ class MyPageRepositoryImpl : MyPageRepository{
         return test
     }
 
-    override fun getMyBadgeInfo(): List<Int> {  //TODO : 구현 필요
-        return listOf()
+    override fun getMyBadgeInfo(): List<Badge> {  //TODO : 서버단 구현 해야함
+
+        var test = ArrayList<Badge>()
+        test.add(Badge(1,"첫 걸음","단어를 처음 학습할 경우 획득"))
+        test.add(Badge(2,"중요한건 꺾이지 않는 마음","단어를 누적 100번이상 틀릴경우 획득"))
+        test.add(Badge(3,"학살중입니다","연속 3일 학습할 경우 획득"))
+        return test
     }
 }

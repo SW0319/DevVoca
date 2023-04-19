@@ -11,7 +11,8 @@ class MyPageFravoriteViewAdapter(var arrayList: ObservableArrayList<FavoriteVoca
 
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =  ViewHolder(ItemsFavoritevocaGroupBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
+        ViewHolder(ItemsFavoritevocaGroupBinding.inflate(LayoutInflater.from(parent.context),parent,false))
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         arrayList[position].apply {

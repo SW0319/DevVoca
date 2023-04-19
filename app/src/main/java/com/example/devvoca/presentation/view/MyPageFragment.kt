@@ -13,10 +13,11 @@ import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.devvoca.data.repository.MyPageRepositoryImpl
 import com.example.devvoca.domain.model.FavoriteVocaGroup
-import com.example.devvoca.presentation.viewmodel.MyPageFavoriteListViewModel
 import com.example.devvoca.databinding.FragmentMyPageBinding
+import com.example.devvoca.domain.model.Badge
 import com.example.devvoca.domain.model.MyPageInfo
 import com.example.devvoca.domain.usecase.MyPageFragmentUseCase
+import com.example.devvoca.presentation.fragmentadapter.MyPageBadgeViewAdapter
 import com.example.devvoca.presentation.fragmentadapter.MyPageFravoriteViewAdapter
 import com.example.devvoca.presentation.viewmodel.MyPageViewModel
 import java.util.ArrayList
@@ -37,12 +38,9 @@ class MyPageFragment : Fragment() {
     private val binding get() = _binding!!
 
     lateinit var myPageViewModel: MyPageViewModel
-    lateinit var observableArrayList: ObservableArrayList<FavoriteVocaGroup>
+    private lateinit var observableArrayList: ObservableArrayList<FavoriteVocaGroup>
+    private lateinit var observableArrayList2: ObservableArrayList<Badge>
     var d = MutableLiveData<MyPageInfo>()
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,8 +56,13 @@ class MyPageFragment : Fragment() {
         //reverseLayout : true로 하면 거꾸로 배치됨
         binding.myPageBadgeView
             .apply {
+                observableArrayList2 = ObservableArrayList({
+                    invalidate()
+                },{
+                    invalidate()
+                })
                 layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
-                //adapter = ?
+                adapter = MyPageBadgeViewAdapter(observableArrayList2)
             }
 
         binding.myPageFavoriteView.apply {
@@ -82,6 +85,7 @@ class MyPageFragment : Fragment() {
     {
         d.value = myPageViewModel.getMyInfo();
         observableArrayList.addAll(myPageViewModel.getMyFavoriteGroup())
+        observableArrayList2.addAll(myPageViewModel.getMyBadge())
 
     }
 

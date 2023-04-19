@@ -1,6 +1,7 @@
 package com.example.devvoca.domain.usecase
 
 import com.example.devvoca.data.repository.MyPageRepositoryImpl
+import com.example.devvoca.domain.model.Badge
 import com.example.devvoca.domain.model.FavoriteVocaGroup
 import com.example.devvoca.domain.model.MyPageInfo
 
@@ -18,8 +19,8 @@ class MyPageFragmentUseCase(private val myPageRepositoryImpl: MyPageRepositoryIm
         return myPageRepositoryImpl.getMyFavoriteGroupInfo()
     }
 
-    fun getMyBadgeInfo()    //나의 뱃지를 가져옴 (일종의 업적 기능)
+    fun getMyBadgeInfo() :List<Badge>   //나의 뱃지를 가져옴 (일종의 업적 기능)
     {
-//        return myPageRepositoryImpl.getMyBadgeInfo()
+        return myPageRepositoryImpl.getMyBadgeInfo()
     }
 }

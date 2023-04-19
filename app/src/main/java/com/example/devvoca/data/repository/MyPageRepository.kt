@@ -1,5 +1,6 @@
 package com.example.devvoca.data.repository
 
+import com.example.devvoca.domain.model.Badge
 import com.example.devvoca.domain.model.FavoriteVocaGroup
 import com.example.devvoca.domain.model.MyPageInfo
 
@@ -9,5 +10,5 @@ interface MyPageRepository {
 
     fun getMyFavoriteGroupInfo() : List<FavoriteVocaGroup>   //나의 즐겨찾기 정보를 가져옴
 
-    fun getMyBadgeInfo() : List<Int>   //나의 뱃지를 가져옴 (일종의 업적 기능)
+    fun getMyBadgeInfo() : List<Badge>   //나의 뱃지를 가져옴 (일종의 업적 기능)
 }
