@@ -14,9 +14,9 @@
 
     <fragment
         android:id="@+id/navigation_favorite"
-        android:name="com.example.devvoca.presentation.view.VocaListFragment"
+        android:name="com.example.devvoca.presentation.view.FavoriteFragment"
         android:label="@string/favorite_fragment"
-        tools:layout="@layout/fragment_voca_list" >
+        tools:layout="@layout/fragment_favorite" >
     </fragment>
 
     <fragment

@@ -8,9 +8,11 @@
     android:layout_marginHorizontal="5dp"
     tools:context=".presentation.view.VocaListFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
 
         <LinearLayout
             android:id="@+id/TopList"
@@ -46,16 +48,13 @@
             app:layout_constraintTop_toBottomOf="@id/TopList"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginVertical="20dp"
+            android:layout_marginVertical="15dp"
             android:background="@color/gray"
             />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="10dp"
             android:layout_height="60dp"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/titleBottom"
             android:id="@+id/vocalist_progressLayout"
             android:padding="0dp"
             android:gravity="top"
@@ -98,9 +97,6 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/progressBottom"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vocalist_progressLayout"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/gray"
@@ -108,12 +104,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/vocalist_recyclerview"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vocalist_progressLayout"
             android:layout_width="match_parent"
-            android:layout_height="540dp"
+            android:layout_height="550dp"
             tools:listitem="@layout/items_voca_list"
             />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </FrameLayout>

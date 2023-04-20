@@ -13,13 +13,14 @@
 
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        >
+
         <LinearLayout
         android:id="@+id/TopList"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -39,15 +40,52 @@
             />
     </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            app:layout_constraintLeft_toLeftOf="@id/TopList"
-            app:layout_constraintTop_toBottomOf="@id/TopList"
+        <TextView
+            android:id="@+id/titleBottom"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layout_constraintHeight_percent="0.9"
+            android:layout_height="1dp"
+            android:layout_marginVertical="15dp"
+            android:background="@color/gray"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:id="@+id/favorite_midList"
+            android:gravity="top"
+            android:orientation="horizontal">
+
+
+            <ImageView
+                android:layout_marginTop="5dp"
+                android:id="@+id/progress_image"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/baseline_label_important_24"/>
+
+            <Spinner
+                android:layout_marginLeft="20dp"
+                android:layout_width="200dp"
+                android:layout_height="35dp"
+                />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/favorite_VocaListView"
+            app:layout_constraintLeft_toLeftOf="@id/TopList"
+            app:layout_constraintTop_toBottomOf="@id/favorite_midList"
+            android:layout_width="match_parent"
+            android:layout_height="550dp"
             tools:listitem="@layout/items_voca_list"
             />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 </FrameLayout>

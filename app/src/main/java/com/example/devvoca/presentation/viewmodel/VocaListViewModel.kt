@@ -2,88 +2,36 @@ package com.example.devvoca.presentation.viewmodel
 
 import ObservableArrayList
 import android.util.Log
+import androidx.lifecycle.MutableLiveData
 import com.example.devvoca.data.repository.DataModel
 import com.example.devvoca.data.api.RetrofitCon
-import com.example.devvoca.data.api.WordService
+import com.example.devvoca.data.api.VocaService
+import com.example.devvoca.data.repository.VocaListRepositoryImpl
 import com.example.devvoca.domain.model.VocaList
+import com.example.devvoca.domain.usecase.VocaListFragmentUseCase
+import com.example.devvoca.presentation.fragmentadapter.VocaListAdapter
 import kotlinx.coroutines.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-object VocaListViewModel : Callback<List<VocaList>>{
+class VocaListViewModel : Callback<List<VocaList>> {
+    var vocalistFragmentUseCase =  VocaListFragmentUseCase(this)
 
-    lateinit var wordLists : ObservableArrayList<VocaList>
-    //업데이트 삭제 선호
-    lateinit var wordService: WordService
-
-    fun init(wordlist :ObservableArrayList<VocaList>)
-    {
-        wordLists = wordlist
-        wordService = RetrofitCon.getWordService()
-        runBlocking(Dispatchers.IO) {
-            DataModel.wordDao.removeAll()
-            wordLists.clear()
-            downloadVocaListFrom(DataModel.serverDB)
-            }
+    val dataList = MutableLiveData<List<VocaList>>().apply {
     }
 
-    suspend fun readAllVocaList(dbType: String)
-    {
-            when (dbType) {
-                DataModel.localDB -> {
+    fun getVocaLists() {
+        vocalistFragmentUseCase.getVocaListsFromFavoriteGroup(null) //모든 단어를 가져온다.
 
-                    wordLists.addAll(DataModel.wordDao.getAll().apply { Log.e("test","사이즈 : ${size}") })
-                }
-                DataModel.serverDB -> {
-                    //TODO : 백엔드 필요
-                }
-            }
-    }
-
-    suspend fun downloadVocaListFrom(type: String)  //서버로부터 단어 목록을 가져오는 함수
-    {
-        when (type)
-        {
-            DataModel.serverDB -> { //AWS Server
-
-                if(wordLists.isEmpty()) //아무것도 없을 경우
-                {
-                    wordService.downloadAllVocaLists().enqueue(this)
-                }
-                else
-                {
-                    wordService.downloadNewVocaLists(lastVocaList = wordLists.last()).enqueue(this)
-                }
-            }
-        }
-    }
-
-    //추가 기능
-
-    fun addVocaListsToLocal(vocaList: List<VocaList>)
-    {
-        DataModel.wordDao.insertAll(*vocaList.toTypedArray().apply {
-            forEach {
-                Log.e("test","v_no 값 : ${it.v_no}")
-
-            }
-            wordLists.addAll(this)
-        })
     }
 
     override fun onResponse(call: Call<List<VocaList>>, response: Response<List<VocaList>>) {
-        Log.e("test","${response.body().toString()}")
-        if(response.isSuccessful)
-        {
-
-         runBlocking(Dispatchers.IO) {
-             addVocaListsToLocal(response.body()!!)
-            }
-        }
+        Log.e("test", "body : ${response.body().toString()}, ${response.isSuccessful}")
+        dataList.value = response.body()
     }
 
     override fun onFailure(call: Call<List<VocaList>>, t: Throwable) {
-
+        Log.e("test", "실패 : ${t.stackTrace}")
     }
 }
