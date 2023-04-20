@@ -6,7 +6,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.POST
 
-interface WordService {
+interface VocaService {
 
     @POST("api/word/downloadLists")
     fun downloadNewVocaLists(@Body lastVocaList: VocaList?) : Call<List<VocaList>>

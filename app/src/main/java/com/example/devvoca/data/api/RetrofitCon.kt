@@ -9,7 +9,7 @@ object RetrofitCon {
     var retrofit: Retrofit
     var url = "https://test.devvoca.p-e.kr/"
     private var authService : AuthService
-    private var wordService : WordService
+    private var vocaService : VocaService
 
     init {
         retrofit = Retrofit.Builder()
@@ -18,7 +18,7 @@ object RetrofitCon {
             .build()
 
         authService = retrofit.create(AuthService::class.java)
-        wordService = retrofit.create(WordService::class.java)
+        vocaService = retrofit.create(VocaService::class.java)
     }
 
 
@@ -26,8 +26,8 @@ object RetrofitCon {
         return authService
     }
 
-    fun getWordService() : WordService {
-        return wordService
+    fun getVocaService() : VocaService {
+        return vocaService
     }
 
 }
