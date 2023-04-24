@@ -92,7 +92,38 @@
                 android:layout_marginBottom="30dp"
                 android:background="@drawable/di_off"
                 android:layout_width="match_parent"
-                android:layout_height="150dp">
+                android:layout_height="150dp"
+                android:orientation="vertical"
+                android:padding="10dp"
+                >
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="90%"
+                    android:textSize="18sp"
+                    />
+                <ProgressBar
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="목표 달성에 거의 도착하였습니다!"
+                    android:textSize="18sp"
+                    />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:text="좀만 더 힘내세요!"
+                    android:textSize="18sp"
+                    />
+
+
             </LinearLayout>
 
             <LinearLayout
