@@ -1,16 +1,13 @@
 package com.example.devvoca.domain.usecase
 
-import com.example.devvoca.data.api.RetrofitCon
 import com.example.devvoca.data.repository.VocaListRepositoryImpl
 import com.example.devvoca.domain.model.FavoriteVocaGroup
 import com.example.devvoca.domain.model.VocaList
-import retrofit2.Call
 import retrofit2.Callback
-import retrofit2.Response
 
-class VocaListFragmentUseCase(private val callback:Callback<List<VocaList>>){
+class VocaListFragmentUseCase(private val callback:Callback<List<VocaList>>, private val callback2:Callback<List<String>>){
 
-    private val vocaListRepositoryImpl = VocaListRepositoryImpl(callback)
+    private val vocaListRepositoryImpl = VocaListRepositoryImpl(callback,callback2)
 
     fun getVocaListsFromFavoriteGroup(group: FavoriteVocaGroup? = null)
     {
@@ -23,6 +20,10 @@ class VocaListFragmentUseCase(private val callback:Callback<List<VocaList>>){
             vocaListRepositoryImpl.getUpdateVocaLists()
         }
         // 내가 원하는 그룹의 단어만 가져오기
+    }
 
+    fun getFavoriteGroup()
+    {
+        vocaListRepositoryImpl.getFavoriteGroup()
     }
 }

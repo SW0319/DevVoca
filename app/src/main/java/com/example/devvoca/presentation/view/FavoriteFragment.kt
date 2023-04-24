@@ -1,12 +1,13 @@
 package com.example.devvoca.presentation.view
 
-import ObservableArrayList
+import android.R
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.devvoca.databinding.FragmentFavoriteBinding
 import com.example.devvoca.presentation.fragmentadapter.VocaListAdapter
@@ -33,7 +34,21 @@ class FavoriteFragment : Fragment() {
             layoutManager = LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false)
         }
 
+        binding.favoriteListItem.adapter = ArrayAdapter(
+            requireContext(), R.layout.simple_spinner_item, vocaListViewModel.favoriteVocaGroupList.value?.toMutableList()!!)
+            .apply {
+                vocaListViewModel.favoriteVocaGroupList.observe(viewLifecycleOwner)
+                {
+                    Log.e("test","favoriteVocaListChanged") //notify가 안되서 수동으로 하도록 설정해놨음.
+                    this.clear()
+                    this.addAll(vocaListViewModel.favoriteVocaGroupList.value!!)
+                }
+            }
+
         vocaListViewModel.getVocaLists()
+        vocaListViewModel.getFavoriteVocaGroup()
+
+        vocaListViewModel.favoriteVocaGroupList.value = listOf("test1","test2","test3")
 
         return binding.root
     }

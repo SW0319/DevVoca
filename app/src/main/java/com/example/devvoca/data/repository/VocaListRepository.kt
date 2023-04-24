@@ -14,4 +14,6 @@ interface VocaListRepository {
     fun getVocaListfromGroup(favoriteVocaGroup: FavoriteVocaGroup) : IntArray
 
     fun getStudyVocaList() : IntArray
+
+    fun getFavoriteGroup()
 }

@@ -18,5 +18,5 @@ interface VocaService {
     fun getWordRanking() : Call<List<VocaList>>
 
     @POST("api/word/getFVocaGroup")
-    fun getWordGroup() : Call<List<FavoriteVocaGroup>>
+    fun getVocaGroup() : Call<List<String>>
 }
