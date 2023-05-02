@@ -48,7 +48,7 @@ class FavoriteFragment : Fragment() {
         vocaListViewModel.getVocaLists()
         vocaListViewModel.getFavoriteVocaGroup()
 
-        vocaListViewModel.favoriteVocaGroupList.value = listOf("test1","test2","test3")
+//        vocaListViewModel.favoriteVocaGroupList.value = listOf("test1","test2","test3")
 
         return binding.root
     }

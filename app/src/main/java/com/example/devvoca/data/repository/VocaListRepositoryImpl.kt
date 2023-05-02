@@ -5,7 +5,7 @@ import com.example.devvoca.domain.model.FavoriteVocaGroup
 import com.example.devvoca.domain.model.VocaList
 import retrofit2.Callback
 
-class VocaListRepositoryImpl(private val callback: Callback<List<VocaList>>, private val callback2: Callback<List<String>>) : VocaListRepository{
+class VocaListRepositoryImpl(private val callback: Callback<List<VocaList>>, private val callback2: Callback<List<FavoriteVocaGroup>>) : VocaListRepository{
 
     private val vocaService = RetrofitCon.getVocaService()
 

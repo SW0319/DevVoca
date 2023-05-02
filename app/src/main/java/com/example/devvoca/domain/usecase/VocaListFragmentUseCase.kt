@@ -5,7 +5,7 @@ import com.example.devvoca.domain.model.FavoriteVocaGroup
 import com.example.devvoca.domain.model.VocaList
 import retrofit2.Callback
 
-class VocaListFragmentUseCase(private val callback:Callback<List<VocaList>>, private val callback2:Callback<List<String>>){
+class VocaListFragmentUseCase(private val callback:Callback<List<VocaList>>, private val callback2:Callback<List<FavoriteVocaGroup>>){
 
     private val vocaListRepositoryImpl = VocaListRepositoryImpl(callback,callback2)
 

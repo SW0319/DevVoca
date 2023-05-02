@@ -13,14 +13,14 @@ class VocaListViewModel : Callback<List<VocaList>> {
 
     val dataList = MutableLiveData<List<VocaList>>()
 
-    val favoriteVocaGroupList = MutableLiveData<List<String>>().apply {
-        value = listOf("")
+    val favoriteVocaGroupList = MutableLiveData<List<FavoriteVocaGroup>>().apply {
+        value = listOf()
     }
 
-    private var vocalistFragmentUseCase =  VocaListFragmentUseCase(this, object: Callback<List<String>>{
+    private var vocalistFragmentUseCase =  VocaListFragmentUseCase(this, object: Callback<List<FavoriteVocaGroup>>{
         override fun onResponse(
-            call: Call<List<String>>,
-            response: Response<List<String>>
+            call: Call<List<FavoriteVocaGroup>>,
+            response: Response<List<FavoriteVocaGroup>>
         ) {
             if(response.isSuccessful)
             {
@@ -29,7 +29,7 @@ class VocaListViewModel : Callback<List<VocaList>> {
             }
         }
 
-        override fun onFailure(call: Call<List<String>>, t: Throwable) {
+        override fun onFailure(call: Call<List<FavoriteVocaGroup>>, t: Throwable) {
             Log.e("test", "실패 : ${t.stackTrace}")
         }
     })

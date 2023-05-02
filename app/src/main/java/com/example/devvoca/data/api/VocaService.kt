@@ -1,6 +1,7 @@
 package com.example.devvoca.data.api
 
 import com.example.devvoca.domain.model.FavoriteVocaGroup
+import com.example.devvoca.domain.model.LoginToken
 import com.example.devvoca.domain.model.VocaList
 import retrofit2.Call
 import retrofit2.http.Body
@@ -18,5 +19,5 @@ interface VocaService {
     fun getWordRanking() : Call<List<VocaList>>
 
     @POST("api/word/getFVocaGroup")
-    fun getVocaGroup() : Call<List<String>>
+    fun getVocaGroup() : Call<List<FavoriteVocaGroup>>
 }

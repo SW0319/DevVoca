@@ -2,36 +2,20 @@ package com.example.devvoca.presentation.view
 
 import ObservableArrayList
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.annotation.MainThread
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.devvoca.data.repository.MyPageRepositoryImpl
 import com.example.devvoca.domain.model.FavoriteVocaGroup
 import com.example.devvoca.databinding.FragmentMyPageBinding
 import com.example.devvoca.domain.model.Badge
 import com.example.devvoca.domain.model.MyPageInfo
-import com.example.devvoca.domain.usecase.MyPageFragmentUseCase
 import com.example.devvoca.presentation.fragmentadapter.MyPageBadgeViewAdapter
 import com.example.devvoca.presentation.fragmentadapter.MyPageFravoriteViewAdapter
 import com.example.devvoca.presentation.viewmodel.MyPageViewModel
-import java.util.ArrayList
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [MyPageFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class MyPageFragment : Fragment() {
 
     private var _binding : FragmentMyPageBinding? = null
@@ -40,7 +24,7 @@ class MyPageFragment : Fragment() {
     lateinit var myPageViewModel: MyPageViewModel
     private lateinit var observableArrayList: ObservableArrayList<FavoriteVocaGroup>
     private lateinit var observableArrayList2: ObservableArrayList<Badge>
-    var d = MutableLiveData<MyPageInfo>()
+    var myPageInfoLiveData = MutableLiveData<MyPageInfo>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +32,7 @@ class MyPageFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentMyPageBinding.inflate(inflater,container,false)
-        myPageViewModel = MyPageViewModel(MyPageFragmentUseCase(MyPageRepositoryImpl()))
+        myPageViewModel = MyPageViewModel(myPageInfoLiveData)
 
         setListener()
 
@@ -83,15 +67,15 @@ class MyPageFragment : Fragment() {
 
     private fun readData()
     {
-        d.value = myPageViewModel.getMyInfo();
-        observableArrayList.addAll(myPageViewModel.getMyFavoriteGroup())
-        observableArrayList2.addAll(myPageViewModel.getMyBadge())
+//        myPageInfoLiveData.value = myPageViewModel.getMyMemoryInfo();
+//        observableArrayList.addAll(myPageViewModel.getMyFavoriteGroup())
+//        observableArrayList2.addAll(myPageViewModel.getMyBadgeInfo())
 
     }
 
     private fun setListener()
     {
-        d.observe(viewLifecycleOwner)
+        myPageInfoLiveData.observe(viewLifecycleOwner)
         {
             binding.mypageLogincount.text = it.login_Count.toString()
             binding.mypageStudyVocaCount.text = it.study_Voca_Count.toString()
