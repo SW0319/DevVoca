@@ -14,20 +14,31 @@
         android:name=".DevVocaApplicaiton"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.view.MainActivity"
+            android:name=".presentation.view.LoginActivity"
             android:exported="true"
-            android:launchMode="singleTop"
             android:screenOrientation="portrait"
+            android:launchMode="singleTask"
             android:windowSoftInputMode="adjustResize|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
+        </activity>
+
+        <activity android:name=".presentation.view.MainActivity"
+            android:launchMode="singleTask"
+            android:exported="true">
+
+            <intent-filter>
+                <action android:name="com.exmaple.devocaMain"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
         </activity>
     </application>
 </manifest>

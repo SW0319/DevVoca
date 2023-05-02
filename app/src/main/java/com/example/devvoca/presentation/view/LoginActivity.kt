@@ -1,10 +1,12 @@
 package com.example.devvoca.presentation.view
 
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.preference.PreferenceManager
 import com.example.devvoca.R
 import com.example.devvoca.data.api.RetrofitCon
 import com.example.devvoca.domain.model.LoginToken
@@ -25,6 +27,17 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        if(PreferenceManager.getDefaultSharedPreferences(baseContext).getString("name","")=="")
+        {
+            Log.e("DevVoca","없음")
+        }
+        else
+        {
+            Log.e("DevVoca","있음")
+            finish()
+            startActivity(Intent(this,MainActivity::class.java))
+        }
+
         var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)  //google 로그인 옵션 객체
             .requestEmail()
             .requestIdToken(getString(R.string.default_web_client_id))  //idToken 값
@@ -43,6 +56,16 @@ class LoginActivity : AppCompatActivity() {
                 var email = task.result.email!!
                 var name = task.result.displayName!!
 
+                //sharedPreferences에 저장
+                PreferenceManager.getDefaultSharedPreferences(this).edit().apply {
+                    putString("idToken",idToken)
+                    putString("email",email)
+                    putString("name",name)
+                }.apply()
+
+                //backend 연동 부분
+                //TODO : loginToken, refreshToken을 활용하는 방법을 찾아보도록 한다.
+                /*
                 RetrofitCon.getAuthService().loginAuthToBackEnd("google",LoginToken(idToken,email,name,"request"))
                     .enqueue(object: Callback<LoginToken>{
                         override fun onResponse(
@@ -59,7 +82,9 @@ class LoginActivity : AppCompatActivity() {
 
                         }
                     })
-
+                 */
+                finish()
+                startActivity(Intent(baseContext,MainActivity::class.java))
                 Log.e("test",task.result.idToken.toString())
             }
         }
