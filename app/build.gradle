@@ -43,6 +43,7 @@ android {
 dependencies {
 
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 //    Char Library (2023.04.12 추가)
 
     apply plugin: 'kotlin-kapt'

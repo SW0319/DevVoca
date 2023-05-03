@@ -93,6 +93,12 @@
                 android:background="@drawable/di_off"
                 android:layout_width="match_parent"
                 android:layout_height="150dp">
+
+                <Button
+                    android:id="@+id/progress_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -125,6 +131,11 @@
                 android:background="@drawable/di_off"
                 android:layout_width="match_parent"
                 android:layout_height="150dp">
+
+                <Button
+                    android:id="@+id/today_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
             </LinearLayout>
 
         </LinearLayout>
