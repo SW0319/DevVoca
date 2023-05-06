@@ -35,13 +35,15 @@ class FavoriteFragment : Fragment() {
         }
 
         binding.favoriteListItem.adapter = ArrayAdapter(
-            requireContext(), R.layout.simple_spinner_item, vocaListViewModel.favoriteVocaGroupList.value?.toMutableList()!!)
+            requireContext(), R.layout.simple_spinner_item, ArrayList<String>())
             .apply {
                 vocaListViewModel.favoriteVocaGroupList.observe(viewLifecycleOwner)
                 {
                     Log.e("test","favoriteVocaListChanged") //notify가 안되서 수동으로 하도록 설정해놨음.
                     this.clear()
-                    this.addAll(vocaListViewModel.favoriteVocaGroupList.value!!)
+                    vocaListViewModel.favoriteVocaGroupList.value?.forEach {
+                        add(it.favoriteGroupName)
+                    }
                 }
             }
 
