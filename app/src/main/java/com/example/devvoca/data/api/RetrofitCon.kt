@@ -1,10 +1,9 @@
 package com.example.devvoca.data.api
 
-import com.example.devvoca.data.Entity.LoginInfo
+import com.example.devvoca.data.Entity.UserInfo
 import com.google.gson.GsonBuilder
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import kotlin.math.log
 
 object RetrofitCon {
 
@@ -13,7 +12,7 @@ object RetrofitCon {
     private var authService : AuthService
     private var vocaService : VocaService
     private var userInfoService : UserInfoService
-    private lateinit var loginInfo : LoginInfo
+    private lateinit var loginInfo : UserInfo
 
     init {
         retrofit = Retrofit.Builder()
@@ -39,13 +38,18 @@ object RetrofitCon {
         return userInfoService
     }
 
-    fun setLoginInfoData(loginInfo: LoginInfo)
+    fun setLoginInfoData(loginInfo: UserInfo)
     {
         this.loginInfo = loginInfo
     }
 
-    fun getLoginInfoData() : LoginInfo
+    fun getLoginInfoData() : UserInfo
     {
         return loginInfo
+    }
+
+    fun getLoginInfoData_testData() : UserInfo
+    {
+        return UserInfo(userNo = 1, email = "tisit0319@naver.com", userID = "사용자명", userName = "wlgnsdks")
     }
 }

@@ -1,5 +1,6 @@
 package com.example.devvoca.data.repository
 
+import android.util.Log
 import com.example.devvoca.data.api.RetrofitCon
 import com.example.devvoca.domain.model.FavoriteVocaGroup
 import com.example.devvoca.domain.model.VocaList
@@ -30,6 +31,7 @@ class VocaListRepositoryImpl(private val callback: Callback<List<VocaList>>, pri
     }
 
     override fun getFavoriteGroup() { //내가 즐겨찾기한 단어들 가져오기
-        vocaService.getVocaGroup().enqueue(callback2)
+        Log.e("DevVoca","userNo : ${RetrofitCon.getLoginInfoData().userNo}")
+        vocaService.getVocaGroup(RetrofitCon.getLoginInfoData()).enqueue(callback2)
     }
 }

@@ -11,6 +11,7 @@ class MyPageFragmentUseCase(myMemoryCallback: Callback<UserMemory>, vocaGroupCal
 
     //repository interface 가져옴 (repository는 domain에 의존성이 생긴다)
     private val myPageRepositoryImpl = MyPageRepositoryImpl(RetrofitCon.getLoginInfoData(),myMemoryCallback, vocaGroupCallback, badgeCallback)
+//    private val myPageRepositoryImpl = MyPageRepositoryImpl(RetrofitCon.getLoginInfoData_testData(),myMemoryCallback, vocaGroupCallback, badgeCallback)
 
     fun getMyMemoryInfo()//내 정보를 가져옴 (로그인 일수, 누적 학습 개수 및 평균 등)
     {

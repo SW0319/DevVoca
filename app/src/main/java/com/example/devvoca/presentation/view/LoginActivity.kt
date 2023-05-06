@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.preference.PreferenceManager
 import com.example.devvoca.R
+import com.example.devvoca.data.Entity.UserInfo
 import com.example.devvoca.data.api.RetrofitCon
 import com.example.devvoca.domain.model.LoginToken
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
@@ -65,24 +66,22 @@ class LoginActivity : AppCompatActivity() {
 
                 //backend 연동 부분
                 //TODO : loginToken, refreshToken을 활용하는 방법을 찾아보도록 한다.
-                /*
                 RetrofitCon.getAuthService().loginAuthToBackEnd("google",LoginToken(idToken,email,name,"request"))
-                    .enqueue(object: Callback<LoginToken>{
+                    .enqueue(object: Callback<UserInfo>{
                         override fun onResponse(
-                            call: Call<LoginToken>,
-                            response: Response<LoginToken>
+                            call: Call<UserInfo>,
+                            response: Response<UserInfo>
                         )
                         {
-
+                            RetrofitCon.setLoginInfoData(response.body()!!)
                             Log.e("test","응답 옴 ${response.body()}")
                         }
 
-                        override fun onFailure(call: Call<LoginToken>, t: Throwable) {
+                        override fun onFailure(call: Call<UserInfo>, t: Throwable) {
                             Log.e("test","실패, ${t.message} ")
 
                         }
                     })
-                 */
                 finish()
                 startActivity(Intent(baseContext,MainActivity::class.java))
                 Log.e("test",task.result.idToken.toString())

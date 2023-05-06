@@ -1,13 +1,13 @@
 package com.example.devvoca.data.repository
 
-import com.example.devvoca.data.Entity.LoginInfo
+import com.example.devvoca.data.Entity.UserInfo
 import com.example.devvoca.data.Entity.UserMemory
 import com.example.devvoca.data.api.RetrofitCon
 import com.example.devvoca.domain.model.Badge
 import com.example.devvoca.domain.model.FavoriteVocaGroup
 import retrofit2.Callback
 
-class MyPageRepositoryImpl(private val loginInfo: LoginInfo, private val myMemoryInfoCallback: Callback<UserMemory>, private val vocaGroupCallback: Callback<List<FavoriteVocaGroup>>, private val badgeCallback: Callback<List<Badge>>) : MyPageRepository{
+class MyPageRepositoryImpl(private val loginInfo: UserInfo, private val myMemoryInfoCallback: Callback<UserMemory>, private val vocaGroupCallback: Callback<List<FavoriteVocaGroup>>, private val badgeCallback: Callback<List<Badge>>) : MyPageRepository{
 
     override fun getMyMemoryInfo(){
 
@@ -20,7 +20,7 @@ class MyPageRepositoryImpl(private val loginInfo: LoginInfo, private val myMemor
 
     override fun getMyFavoriteGroupInfo() {    //TODO : 구현 필요
 
-        RetrofitCon.getVocaService().getVocaGroup().enqueue(vocaGroupCallback)
+        RetrofitCon.getVocaService().getVocaGroup(loginInfo).enqueue(vocaGroupCallback)
 
 //        RetrofitCon.getWordService().getWordGroup().enqueue(object : Callback<List<FavoriteVocaGroup>> {
 //            override fun onResponse(
@@ -51,7 +51,7 @@ class MyPageRepositoryImpl(private val loginInfo: LoginInfo, private val myMemor
 
     override fun getMyBadgeInfo() {  //TODO : 서버단 구현 해야함
 
-        RetrofitCon.getUserInfoService().getLoginUserBadgeInfo(loginInfo).enqueue(badgeCallback)
+//        RetrofitCon.getUserInfoService().getLoginUserBadgeInfo(loginInfo).enqueue(badgeCallback)
 
         /*
         var test = ArrayList<Badge>()

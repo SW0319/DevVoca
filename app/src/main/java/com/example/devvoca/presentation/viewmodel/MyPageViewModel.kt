@@ -12,7 +12,9 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MyPageViewModel(myPageLiveData: MutableLiveData<MyPageInfo>) : ViewModel() {
+class MyPageViewModel(myPageInfoLiveData: MutableLiveData<MyPageInfo>, myPageBadgeListLiveData: MutableLiveData<List<Badge>>
+                        ,myPageFavoriteVocagroupLiveData: MutableLiveData<List<FavoriteVocaGroup>>
+) : ViewModel() {
 
     var myPageMemoryCallback = object : Callback<UserMemory> {
         override fun onResponse(call: Call<UserMemory>, response: Response<UserMemory>) {
@@ -27,6 +29,7 @@ class MyPageViewModel(myPageLiveData: MutableLiveData<MyPageInfo>) : ViewModel()
         }
     }
 
+    //My Page Badge에 대한 callback
     var myPageBadgeCallback = object:Callback<List<Badge>>{
         override fun onResponse(call: Call<List<Badge>>, response: Response<List<Badge>>) {
             if(response.isSuccessful)
@@ -41,7 +44,8 @@ class MyPageViewModel(myPageLiveData: MutableLiveData<MyPageInfo>) : ViewModel()
         }
     }
 
-    var myPageFavoriteVocaGroupCallback = object : Callback<List<FavoriteVocaGroup>>
+    //My Page의 FavoriteVocaGroup에 대한 callback
+    private var myPageFavoriteVocaGroupCallback = object : Callback<List<FavoriteVocaGroup>>
     {
         override fun onResponse(
             call: Call<List<FavoriteVocaGroup>>,
@@ -49,7 +53,8 @@ class MyPageViewModel(myPageLiveData: MutableLiveData<MyPageInfo>) : ViewModel()
         ) {
             if(response.isSuccessful)
             {
-
+                Log.e("DevVoca","response is successful")
+                myPageFavoriteVocagroupLiveData.value = response.body()
             }
         }
         override fun onFailure(call: Call<List<FavoriteVocaGroup>>, t: Throwable) {
