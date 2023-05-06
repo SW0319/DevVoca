@@ -1,7 +1,6 @@
 package com.example.devvoca.presentation.view
 
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -28,13 +27,23 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        if(PreferenceManager.getDefaultSharedPreferences(baseContext).getString("name","")=="")
+        var userID =PreferenceManager.getDefaultSharedPreferences(baseContext).getString("userID","")
+        Log.e("DevVoca","loginID : $userID")
+        if(userID != null && userID!= "")
         {
-            Log.e("DevVoca","없음")
-        }
-        else
-        {
-            Log.e("DevVoca","있음")
+            RetrofitCon.getAuthService().loginWithLoginID("google",userID)
+                .enqueue(object : Callback<UserInfo> {
+                    override fun onResponse(call: Call<UserInfo>, response: Response<UserInfo>) {
+                        if(response.isSuccessful)
+                        {
+                            Log.e("DevVoca","로그인 완료")
+                            RetrofitCon.setLoginInfoData(response.body()!!)
+                        }
+                    }
+                    override fun onFailure(call: Call<UserInfo>, t: Throwable) {
+                        Log.e("DevVoca","$t")
+                    }
+                })
             finish()
             startActivity(Intent(this,MainActivity::class.java))
         }
@@ -52,17 +61,13 @@ class LoginActivity : AppCompatActivity() {
             {
                 val data: Intent? = result.data
                 val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-                Log.e("test","token 길이 : ${task.result.idToken?.toString()?.length}")
+                Log.e("test","token 길이 : ${task.result.idToken?.length}")
                 var idToken = task.result.idToken!!
                 var email = task.result.email!!
                 var name = task.result.displayName!!
 
                 //sharedPreferences에 저장
-                PreferenceManager.getDefaultSharedPreferences(this).edit().apply {
-                    putString("idToken",idToken)
-                    putString("email",email)
-                    putString("name",name)
-                }.apply()
+
 
                 //backend 연동 부분
                 //TODO : loginToken, refreshToken을 활용하는 방법을 찾아보도록 한다.
@@ -74,7 +79,8 @@ class LoginActivity : AppCompatActivity() {
                         )
                         {
                             RetrofitCon.setLoginInfoData(response.body()!!)
-                            Log.e("test","응답 옴 ${response.body()}")
+                            Log.e("test","응답 옴 ${response.body()}, userID : ${response.body()?.userID}")
+                            PreferenceManager.getDefaultSharedPreferences(baseContext).edit().putString("userID",response.body()?.userID).commit()
                         }
 
                         override fun onFailure(call: Call<UserInfo>, t: Throwable) {

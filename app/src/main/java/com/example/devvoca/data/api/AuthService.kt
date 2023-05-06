@@ -15,4 +15,7 @@ interface AuthService { //인증 서비스
     @POST("api/auth/{platform}") //{}로 묶으면 변수값을 사용 할 수 있다.
     fun loginAuthToBackEnd(@Path("platform") platform: String, @Body idTokenString : LoginToken) : Call<UserInfo>
 
+    @POST("api/auth/{platform}/login")
+    fun loginWithLoginID(@Path("platform") platform: String, @Body userID:String) : Call<UserInfo>
+
 }
