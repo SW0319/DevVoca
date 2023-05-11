@@ -11,10 +11,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.devvoca.Model.DataModel
-import com.example.devvoca.Repo.AppDatabase
-import com.example.devvoca.Repo.VocaList
-import com.example.devvoca.ViewModel.VocaListViewModel
 import com.example.devvoca.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.coroutines.CoroutineScope

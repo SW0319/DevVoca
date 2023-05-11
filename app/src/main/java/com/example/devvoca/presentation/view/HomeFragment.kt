@@ -9,6 +9,8 @@ import android.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.example.devvoca.R
+import com.example.devvoca.SearchActivity
 import com.example.devvoca.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {

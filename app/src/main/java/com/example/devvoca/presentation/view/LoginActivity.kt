@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.preference.PreferenceManager
+import com.example.devvoca.MainActivity
 import com.example.devvoca.R
 import com.example.devvoca.data.Entity.UserInfo
 import com.example.devvoca.data.api.RetrofitCon
@@ -45,7 +46,7 @@ class LoginActivity : AppCompatActivity() {
                     }
                 })
             finish()
-            startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
         var gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)  //google 로그인 옵션 객체

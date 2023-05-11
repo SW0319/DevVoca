@@ -9,11 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.recyclerview.widget.RecyclerView
+import com.example.devvoca.domain.model.VocaList
 
-class SearchWordListAdapter(var words: ArrayList<Word>, var con: Context) :
+class SearchWordListAdapter(var words: ArrayList<VocaList>, var con: Context) :
     RecyclerView.Adapter<SearchWordListAdapter.ViewHolder>(), Filterable {
 
-    var filteredWords = ArrayList<Word>()
+    var filteredWords = ArrayList<VocaList>()
     private var itemFilter = ItemFilter()
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -28,8 +29,8 @@ class SearchWordListAdapter(var words: ArrayList<Word>, var con: Context) :
                 AlertDialog.Builder(con).apply {
                     val position = adapterPosition
                     val person = filteredWords[position]
-                    setTitle(person.word)
-                    setMessage(person.mean)
+                    setTitle(person.vocaname)
+                    setMessage(person.translate)
                     setPositiveButton("OK") { _, _ ->
                         Toast.makeText(con, "OK Button Click", Toast.LENGTH_SHORT).show()
                     }
@@ -52,11 +53,11 @@ class SearchWordListAdapter(var words: ArrayList<Word>, var con: Context) :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val word: Word = filteredWords[position]
+        val word: VocaList = filteredWords[position]
         //[수정요함] 이미지 작업의 경우 glide를 사용해 server의 image를 불러올 것
         //holder.iv_person_phone_book_list_item
-        holder.word.text = word.word
-        holder.mean.text = word.mean
+        holder.word.text = word.vocaname
+        holder.mean.text = word.translate
     }
 
     override fun getItemCount(): Int {
@@ -75,12 +76,12 @@ class SearchWordListAdapter(var words: ArrayList<Word>, var con: Context) :
             val results = FilterResults()
 
             //검색이 필요없을 경우를 위해 원본 배열을 복제
-            val filteredList: ArrayList<Word> = ArrayList()
+            val filteredList: ArrayList<VocaList> = ArrayList()
 
             //공백제외 아무런 값이 없을 경우 -> 원본 배열
             if (filterString.trim { it <= ' ' }.isNotEmpty()) {
                 for (person in words) {
-                    if (person.word.contains(filterString) || person.mean.contains(filterString)) {
+                    if (person.vocaname.contains(filterString) || person.translate.contains(filterString)) {
                         filteredList.add(person)
                     }
                 }
@@ -97,7 +98,7 @@ class SearchWordListAdapter(var words: ArrayList<Word>, var con: Context) :
         override fun publishResults(charSequence: CharSequence?, filterResults: FilterResults) {
 
             filteredWords.clear()
-            filteredWords.addAll(filterResults.values as ArrayList<Word>)
+            filteredWords.addAll(filterResults.values as ArrayList<VocaList>)
             notifyDataSetChanged()
         }
     }
