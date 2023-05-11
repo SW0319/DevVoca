@@ -1,21 +1,15 @@
 package com.example.devvoca
 
-import ObservableArrayList
-import androidx.appcompat.app.AppCompatActivity
+import com.example.devvoca.CustomList.ObservableArrayList
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.devvoca.Model.DataModel
 import com.example.devvoca.Repo.VocaList
 import com.example.devvoca.ViewModel.VocaListViewModel
 import com.example.devvoca.databinding.FragmentVocaListBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 
 class VocaListFragment : Fragment() {

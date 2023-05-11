@@ -11,11 +11,11 @@ import com.example.devvoca.databinding.ActivitySearchBinding
 class SearchActivity : AppCompatActivity() {
     val TAG = "MainActivity"
 
-    lateinit var rv_phone_book: RecyclerView
-    lateinit var phoneBookListAdapter: PhoneBookListAdapter
-    lateinit var persons: ArrayList<Person>
+    lateinit var searchRecycle: RecyclerView
+    lateinit var searchWordListAdapter: SearchWordListAdapter
+    lateinit var words: ArrayList<Word>
 
-    lateinit var search_view_phone_book: SearchView
+    lateinit var searchView: SearchView
 
     private lateinit var binding: ActivitySearchBinding
 
@@ -23,13 +23,14 @@ class SearchActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySearchBinding.inflate(layoutInflater)
 
-        rv_phone_book = binding.searchHint
-        search_view_phone_book = binding.searchView
+        searchRecycle = binding.searchRecycle
+        searchView = binding.searchView
 
-        search_view_phone_book.setOnQueryTextListener(searchViewTextListener)
+        searchView.setOnQueryTextListener(searchViewTextListener)
 
-        persons = tempPersons()
+        words = tempWords()
         setAdapter()
+        searchWordListAdapter.filter.filter("")
 
         setContentView(binding.root)
     }
@@ -43,31 +44,30 @@ class SearchActivity : AppCompatActivity() {
 
             //텍스트 입력/수정시에 호출
             override fun onQueryTextChange(s: String): Boolean {
-                phoneBookListAdapter.filter.filter(s)
-                Log.d(TAG, "SearchVies Text is changed : $s")
+                searchWordListAdapter.filter.filter(s)
                 return false
             }
         }
 
     private fun setAdapter(){
         //리사이클러뷰에 리사이클러뷰 어댑터 부착
-        rv_phone_book.layoutManager = LinearLayoutManager(this)
-        phoneBookListAdapter = PhoneBookListAdapter(persons, this)
-        rv_phone_book.adapter = phoneBookListAdapter
+        searchRecycle.layoutManager = LinearLayoutManager(this)
+        searchWordListAdapter = SearchWordListAdapter(words, this)
+        searchRecycle.adapter = searchWordListAdapter
     }
 
-    private fun tempPersons(): ArrayList<Person> {
-        var tempPersons = ArrayList<Person>()
-        tempPersons.add(Person(1, "kim", "01011111111"))
-        tempPersons.add(Person(2, "lee", "01022222222"))
-        tempPersons.add(Person(3, "park", "01033333333"))
-        tempPersons.add(Person(4, "son", "01044444444"))
-        tempPersons.add(Person(5, "hwang", "01055555555"))
-        tempPersons.add(Person(6, "jo", "01066666666"))
-        tempPersons.add(Person(7, "gwak", "01077777777"))
-        tempPersons.add(Person(8, "sim", "01088888888"))
-        tempPersons.add(Person(9, "choi", "01099999999"))
-        return tempPersons
+    private fun tempWords(): ArrayList<Word> {
+        val tempWords = ArrayList<Word>()
+        tempWords.add(Word(1, "fear", "공포, 두려움, 무서움"))
+        tempWords.add(Word(2, "halve", "반으로 줄다[줄이다]"))
+        tempWords.add(Word(3, "prattle", "(쓸데없이 마구) 지껄이다"))
+        tempWords.add(Word(4, "facelift", "주름(살) 제거 수술"))
+        tempWords.add(Word(5, "homogeneous", "동종[동질]의"))
+        tempWords.add(Word(6, "twee", "(우스꽝스러울 정도로) 앙증맞은; 감상적으로 보이는"))
+        tempWords.add(Word(7, "blend", "섞다, 혼합하다"))
+        tempWords.add(Word(8, "capture", "포로로 잡다, 억류하다; 포획하다"))
+        tempWords.add(Word(9, "captivity", "감금, 억류"))
+        tempWords.add(Word(10, "monstrosity", "아주 크고 흉물스러운 것(특히 건물)"))
+        return tempWords
     }
-
 }

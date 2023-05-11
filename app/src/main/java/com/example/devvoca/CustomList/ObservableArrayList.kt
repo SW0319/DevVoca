@@ -1,4 +1,6 @@
-class ObservableArrayList<T>(     private val onItemListAddedCallback: (item : Collection<T>) -> Unit
+package com.example.devvoca.CustomList
+
+class ObservableArrayList<T>(private val onItemListAddedCallback: (item : Collection<T>) -> Unit
                              ) : ArrayList<T>() {
 
     override fun add(element: T): Boolean {

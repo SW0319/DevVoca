@@ -11,15 +11,18 @@
         android:id="@+id/searchView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:closeIcon="@drawable/baseline_clear_24"
         android:iconifiedByDefault="false"
         android:paddingTop="5dp"
-        android:paddingBottom="5dp" />
+        android:paddingBottom="5dp"
+        android:queryHint="검색어를 입력하시오"
+        app:queryBackground="@drawable/searchview_background"
+        app:showAsAction="always"
+        app:theme="@style/AppTheme.searchVIew" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/search_hint"
+        android:id="@+id/search_recycle"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/items_search_hint_list" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

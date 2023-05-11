@@ -1,8 +1,8 @@
 package com.example.devvoca
 
-data class Person(
+data class Word(
     var no: Int,
-    var name: String,
-    var phoneNumber: String,
+    var word: String,
+    var mean: String,
     var imagePath: String = "none",
 ){}

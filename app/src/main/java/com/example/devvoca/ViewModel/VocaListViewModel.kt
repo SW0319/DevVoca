@@ -1,6 +1,6 @@
 package com.example.devvoca.ViewModel
 
-import ObservableArrayList
+import com.example.devvoca.CustomList.ObservableArrayList
 import android.util.Log
 import androidx.recyclerview.widget.RecyclerView
 import com.example.devvoca.Model.DataModel
@@ -18,7 +18,7 @@ object VocaListViewModel : Callback<List<VocaList>>{
     //업데이트 삭제 선호
     lateinit var wordService: WordService
 
-    fun init(wordlist :ObservableArrayList<VocaList>)
+    fun init(wordlist : ObservableArrayList<VocaList>)
     {
         wordLists = wordlist
         wordService = RetrofitCon.getWordService()
