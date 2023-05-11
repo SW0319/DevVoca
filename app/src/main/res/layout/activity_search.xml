@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SearchActivity">
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:closeIcon="@drawable/baseline_clear_24"
+        android:iconifiedByDefault="false"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:queryHint="검색어를 입력하시오"
+        app:queryBackground="@drawable/searchview_background"
+        app:showAsAction="always"
+        app:theme="@style/AppTheme.searchVIew" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

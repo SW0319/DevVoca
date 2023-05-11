@@ -10,6 +10,12 @@
         android:name="com.example.devvoca.presentation.view.HomeFragment"
         android:label="@string/favorite_fragment"
         tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_navigation_home_to_studyFragment"
+            app:destination="@id/studyFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_todayFragment"
+            app:destination="@id/todayFragment" />
     </fragment>
 
     <fragment
@@ -25,4 +31,14 @@
         android:label="@string/my_page_fragment"
         tools:layout="@layout/fragment_my_page" >
     </fragment>
+    <fragment
+        android:id="@+id/studyFragment"
+        android:name="com.example.devvoca.study.StudyFragment"
+        android:label="fragment_study"
+        tools:layout="@layout/fragment_study" />
+    <fragment
+        android:id="@+id/todayFragment"
+        android:name="com.example.devvoca.today.TodayFragment"
+        android:label="fragment_today"
+        tools:layout="@layout/fragment_today" />
 </navigation>

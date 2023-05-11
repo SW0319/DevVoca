@@ -1,18 +1,28 @@
-package com.example.devvoca.presentation.view
+package com.example.devvoca
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Button
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.devvoca.R
+import androidx.room.Room
+import androidx.room.RoomDatabase
+import com.example.devvoca.Model.DataModel
+import com.example.devvoca.Repo.AppDatabase
+import com.example.devvoca.Repo.VocaList
+import com.example.devvoca.ViewModel.VocaListViewModel
 import com.example.devvoca.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 
 class MainActivity : AppCompatActivity() {
-
-
-    //ㅁㄴㅇㅁㄴㅇㅁㄴㅇdd
 
     private lateinit var binding: ActivityMainBinding
 
@@ -24,14 +34,9 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
 
-//        val appBarConfiguration = AppBarConfiguration(
-//            setOf(
-//                R.id.navigation_home, R.id.navigation_favorite, R.id.navigation_my_page
-//            )
-//        )
-//        setupActionBarWithNavController(navController, appBarConfiguration)
-
         navView.setupWithNavController(navController)
+
+        //test
 /*
         binding.inputButton1.setOnClickListener {
             CoroutineScope(Dispatchers.IO).launch {
