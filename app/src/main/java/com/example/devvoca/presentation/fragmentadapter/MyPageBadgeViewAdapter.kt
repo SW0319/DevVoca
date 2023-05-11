@@ -14,7 +14,7 @@ class MyPageBadgeViewAdapter(var badgeList:MutableLiveData<List<Badge>>) : Recyc
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(ItemsMybadgeBinding.inflate(LayoutInflater.from(parent.context)))
     }
-//    asdasd
+//    asdasdsdafasf
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.titleView.text = badgeData[position].b_Name
     }
