@@ -23,6 +23,6 @@ class DevVocaApplicaiton : Application() {
         {
             intent = Intent("com.exmaple.devocaMain")
         }
-            startActivity(intent)
+            startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
     }
 }
