@@ -2,9 +2,14 @@ package com.example.devvoca.presentation.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import com.example.devvoca.data.repository.DataModel
 import com.example.devvoca.domain.model.FavoriteVocaGroup
 import com.example.devvoca.domain.model.VocaList
 import com.example.devvoca.domain.usecase.VocaListFragmentUseCase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -30,12 +35,20 @@ class VocaListViewModel : Callback<List<VocaList>> {
         }
 
         override fun onFailure(call: Call<List<FavoriteVocaGroup>>, t: Throwable) {
-            Log.e("test", "실패 : ${t.stackTrace}")
+            Log.e("test", "실패 : ${t.stackTrace}, 로컬DB에서 추가")
+            var result : List<FavoriteVocaGroup>
+            runBlocking(Dispatchers.IO) {
+                result = DataModel.favoriteVocaGroupDao.getAll()
+            }
+            favoriteVocaGroupList.value = result
         }
     })
 
     fun getVocaLists() {
-        vocalistFragmentUseCase.getVocaListsFromFavoriteGroup(null) //모든 단어를 가져온다.
+        CoroutineScope(Dispatchers.IO).launch {
+            vocalistFragmentUseCase.getAllVocaMyFavorite() //모든 단어를 가져온다.
+        }
+
     }
 
     fun getFavoriteVocaGroup()
