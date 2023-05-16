@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.devvoca.data.repository.DataModel
 import com.example.devvoca.databinding.FragmentFavoriteBinding
 import com.example.devvoca.presentation.fragmentadapter.VocaListAdapter
 import com.example.devvoca.presentation.viewmodel.VocaListViewModel
@@ -46,9 +47,8 @@ class FavoriteFragment : Fragment() {
                     }
                 }
             }
-
-        vocaListViewModel.getVocaLists()
         vocaListViewModel.getFavoriteVocaGroup()
+        vocaListViewModel.getVocaLists()
 
 //        vocaListViewModel.favoriteVocaGroupList.value = listOf("test1","test2","test3")
 

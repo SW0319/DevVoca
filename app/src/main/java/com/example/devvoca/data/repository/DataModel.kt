@@ -7,7 +7,7 @@ object DataModel {
 
     lateinit var appDatabase: AppDatabase
     lateinit var wrongVocaDao: WrongVocaDao
-    lateinit var favoriteVocaDao: FavoriteVocaDao
+    lateinit var favoriteVocaGroupDao: FavoriteVocaGroupDao
     lateinit var wordDao: WordDao
     lateinit var completeVocaDao: CompleteVocaDao
 
@@ -23,7 +23,7 @@ object DataModel {
     private fun createLocalDao()
     {
         completeVocaDao = appDatabase.completeVocaDao()
-        favoriteVocaDao = appDatabase.favoriteVocaDao()
+        favoriteVocaGroupDao = appDatabase.favoriteVocaGroupDao()
         wordDao = appDatabase.wordDao()
         wrongVocaDao = appDatabase.wrongVocaDao()
     }

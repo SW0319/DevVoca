@@ -19,4 +19,7 @@ interface WordDao {
 
     @Query("DELETE FROM VocaList")
     fun removeAll()
+
+    @Query("select * from VocaList where v_no = :vNo")
+    fun getVocaListByID(vNo:Int) : VocaList
 }
