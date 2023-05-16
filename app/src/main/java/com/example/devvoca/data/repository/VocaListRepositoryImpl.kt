@@ -31,7 +31,7 @@ class VocaListRepositoryImpl(private val callback: Callback<List<VocaList>>, pri
     }
 
     override fun getFavoriteGroup() { //내가 즐겨찾기한 단어들 가져오기
-        Log.e("DevVoca","userNo : ${RetrofitCon.getLoginInfoData().userNo}")
-        vocaService.getVocaGroup(RetrofitCon.getLoginInfoData()).enqueue(callback2)
+//        Log.e("DevVoca","userNo : ${RetrofitCon.getLoginInfoData().userNo}")
+        vocaService.getVocaGroup(RetrofitCon.getLoginInfoData_testData()).enqueue(callback2)
     }
 }
