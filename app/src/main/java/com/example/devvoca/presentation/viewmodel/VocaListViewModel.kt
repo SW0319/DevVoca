@@ -20,7 +20,7 @@ class VocaListViewModel{
 
     fun getAllMyFavoriteVocaLists() {
         CoroutineScope(Dispatchers.IO).launch {
-            vocalistFragmentUseCase.getAllVocaMyFavorite() //모든 단어를 가져온다.
+            dataList.postValue(vocalistFragmentUseCase.getAllVocaMyFavorite()) //모든 단어를 가져온다.
         }
 
     }
