@@ -20,7 +20,7 @@ class MyPageRepositoryImpl(private val loginInfo: UserInfo, private val myMemory
 
     override fun getMyFavoriteGroupInfo() {    //TODO : 구현 필요
 
-        RetrofitCon.getVocaService().getVocaGroup(loginInfo).enqueue(vocaGroupCallback)
+//        RetrofitCon.getVocaService().getMyFavoriteVocaGroup(loginInfo).enqueue(vocaGroupCallback)
 
 //        RetrofitCon.getWordService().getWordGroup().enqueue(object : Callback<List<FavoriteVocaGroup>> {
 //            override fun onResponse(
