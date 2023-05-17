@@ -4,6 +4,7 @@ import com.example.devvoca.data.Entity.UserInfo
 import com.example.devvoca.domain.model.FavoriteVocaGroup
 import com.example.devvoca.domain.model.VocaList
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.POST
 
@@ -13,11 +14,11 @@ interface VocaService {
     fun downloadNewVocaLists(@Body lastVocaList: VocaList?) : Call<List<VocaList>>
 
     @POST("api/word/downloadAllLists")
-    fun downloadAllVocaLists() : Call<List<VocaList>>
+    suspend fun downloadAllVocaLists() : Response<List<VocaList>>
 
     @POST("api/word/wordRanking")
     fun getWordRanking() : Call<List<VocaList>>
 
     @POST("api/word/getFVocaGroup")
-    fun getVocaGroup(@Body userInfo: UserInfo) : Call<List<FavoriteVocaGroup>>
+    suspend fun getMyFavoriteVocaGroup(@Body userInfo: UserInfo) : Response<List<FavoriteVocaGroup>>
 }

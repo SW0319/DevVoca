@@ -2,10 +2,11 @@ package com.example.devvoca.data.repository
 
 import com.example.devvoca.domain.model.FavoriteVocaGroup
 import com.example.devvoca.domain.model.VocaList
+import retrofit2.Call
 
 interface VocaListRepository {
 
-    fun getAllVocaLists()
+    suspend fun getAllVocaLists() : List<VocaList>
 
     fun getUpdateVocaLists() : List<VocaList>
 
@@ -15,5 +16,5 @@ interface VocaListRepository {
 
     fun getStudyVocaList() : IntArray
 
-    fun getFavoriteGroup()
+    suspend fun getMyFavoriteVocaGroupList() : List<FavoriteVocaGroup>
 }
