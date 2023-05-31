@@ -12,17 +12,14 @@ import kotlinx.coroutines.withContext
 class VocaListFragmentUseCase{
 
     private val vocaListRepositoryImpl = VocaListRepositoryImpl()
-    private val wordDao = DataModel.wordDao
-    private val favoriteVocaGroupDao = DataModel.favoriteVocaGroupDao
     suspend fun getAllVocaMyFavorite() : List<VocaList>
     {
         return vocaListRepositoryImpl.getAllVocaLists()
     }
-    fun getVocaListsFromFavoriteGroup(group: FavoriteVocaGroup)
+    suspend fun getVocaListsFromFavoriteGroup(group: FavoriteVocaGroup) : List<VocaList>
     {
-        group.favoriteVocaListArray.split(",").forEach {
-                wordDao.getVocaListByID(it.toInt())
-        }
+
+        return vocaListRepositoryImpl.getVocaListfromGroup(group)
         // 내가 원하는 그룹의 단어만 가져오기굳이? 여기는 단어 그룹만 가져오고 단어 자체는 App에서 가져와야 한다.
     }
 

@@ -12,7 +12,7 @@ interface VocaListRepository {
 
     fun getMyFavoriteVocaLists() : IntArray
 
-    fun getVocaListfromGroup(favoriteVocaGroup: FavoriteVocaGroup) : IntArray
+    suspend fun getVocaListfromGroup(favoriteVocaGroup: FavoriteVocaGroup) : List<VocaList>
 
     fun getStudyVocaList() : IntArray
 

@@ -30,6 +30,12 @@ class VocaListViewModel{
         CoroutineScope(Dispatchers.IO).launch {
          favoriteVocaGroupList.postValue(vocalistFragmentUseCase.getMyFavoriteVocaGroupNameList())
         }
+    }
 
+    fun getFavoriteVocaLists(group : FavoriteVocaGroup)
+    {
+        CoroutineScope(Dispatchers.IO).launch {
+            dataList.postValue(vocalistFragmentUseCase.getVocaListsFromFavoriteGroup(group))
+        }
     }
 }

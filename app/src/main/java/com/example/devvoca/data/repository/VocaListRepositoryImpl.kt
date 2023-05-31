@@ -36,8 +36,21 @@ class VocaListRepositoryImpl : VocaListRepository{
         TODO("Not yet implemented")
     }
 
-    override fun getVocaListfromGroup(favoriteVocaGroup: FavoriteVocaGroup): IntArray { //내가 즐겨찾기 한 단어 중 특정 그룹에 속한 단어들 가져오기
-        TODO("Not yet implemented")
+    override suspend fun getVocaListfromGroup(favoriteVocaGroup: FavoriteVocaGroup): List<VocaList> { //내가 즐겨찾기 한 단어 중 특정 그룹에 속한 단어들 가져오기
+        return try {
+            withContext(Dispatchers.IO)
+            {
+                var result = ArrayList<VocaList>()
+                favoriteVocaGroup.favoriteVocaListArray.split(",").forEach {
+                    result.add(wordDao.getVocaListByID(it.toInt()))
+                }
+                result
+            }
+        } catch (e : Exception)
+        {
+            wordDao.getAll()
+        }
+
     }
 
     override fun getStudyVocaList(): IntArray { //내가 공부한 단어 목록 가져오기
