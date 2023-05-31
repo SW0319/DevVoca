@@ -30,7 +30,10 @@ class DevVocaApplicaiton : Application() {
         tempWords.add(VocaList(10, "monstrosity", "아주 크고 흉물스러운 것(특히 건물)","translate","example","exampleTranslate",1))
         DataModel.init(baseContext).apply {
             CoroutineScope(Dispatchers.IO).launch {
+            DataModel.wordDao.removeAll()
+                DataModel.favoriteVocaGroupDao.removeAll()
              tempWords.forEach{
+
                      DataModel.wordDao.insert(it)
                 }
                  DataModel.favoriteVocaGroupDao.insertData(FavoriteVocaGroup(0,"이름","1,4,8"))

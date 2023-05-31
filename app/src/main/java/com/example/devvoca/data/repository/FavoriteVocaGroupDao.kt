@@ -17,4 +17,6 @@ interface FavoriteVocaGroupDao {
 
     @Query("Select * from FavoriteVocaGroup")
     fun getAll() : List<FavoriteVocaGroup>
+    @Query("Delete from FavoriteVocaGroup")
+    fun removeAll()
 }
