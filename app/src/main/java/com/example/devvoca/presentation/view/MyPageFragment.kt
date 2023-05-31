@@ -8,10 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.devvoca.data.Entity.UserMemory
 import com.example.devvoca.domain.model.FavoriteVocaGroup
 import com.example.devvoca.databinding.FragmentMyPageBinding
 import com.example.devvoca.domain.model.Badge
-import com.example.devvoca.domain.model.MyPageInfo
 import com.example.devvoca.presentation.fragmentadapter.MyPageBadgeViewAdapter
 import com.example.devvoca.presentation.fragmentadapter.MyPageFravoriteViewAdapter
 import com.example.devvoca.presentation.viewmodel.MyPageViewModel
@@ -24,7 +24,7 @@ class MyPageFragment : Fragment() {
     lateinit var myPageViewModel: MyPageViewModel
     private lateinit var favoriteVocaGroupLiveData: MutableLiveData<List<FavoriteVocaGroup>>
     private lateinit var badgeListLiveData: MutableLiveData<List<Badge>>
-    var myPageInfoLiveData = MutableLiveData<MyPageInfo>()
+    var myPageInfoLiveData = MutableLiveData<UserMemory>()
 
 
     override fun onCreateView(
@@ -60,7 +60,11 @@ class MyPageFragment : Fragment() {
 
     private fun readData()
     {
-        myPageViewModel.getMyFavoriteGroup()
+        myPageViewModel.apply {
+            getMyFavoriteGroup()
+            getMyBadgeInfo()
+            getMyMemoryInfo()
+        }
 //        favoriteVocaGroupLiveData.value = listOf(FavoriteVocaGroup(1,"dd"))
 //        myPageInfoLiveData.value = myPageViewModel.getMyMemoryInfo();
 //        observableArrayList.addAll(myPageViewModel.getMyFavoriteGroup())
@@ -72,16 +76,19 @@ class MyPageFragment : Fragment() {
     {
         myPageInfoLiveData.observe(viewLifecycleOwner)
         {
-            binding.mypageLogincount.text = it.login_Count.toString()
-            binding.mypageStudyVocaCount.text = it.study_Voca_Count.toString()
-            binding.mypageStudyStreak.text = it.study_streak.toString()
-            binding.mypageStudyRank.text = it.study_rank.toString()
+            binding.mypageLogincount.text = it.u_subscriptionDate.toString()
+            binding.mypageStudyVocaCount.text = it.u_studiedVocaTotal.toString()
+            binding.mypageStudyStreak.text = it.u_attendanceStreak.toString()
+            binding.mypageStudyRank.text = it.u_totalRank.toString()
         }
 
         favoriteVocaGroupLiveData.observe(viewLifecycleOwner)
         {
-            Log.e("DevVoca","obser완료, data : ${favoriteVocaGroupLiveData.value?.size}")
             binding.myPageFavoriteView.adapter?.notifyDataSetChanged()
+        }
+        badgeListLiveData.observe(viewLifecycleOwner){
+            binding.myPageBadgeView.adapter?.notifyDataSetChanged()
+            Log.e("test","badgeLiveDat Observed, ${badgeListLiveData.value?.size}")
         }
     }
 }

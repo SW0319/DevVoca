@@ -22,16 +22,12 @@ class MyPageFravoriteViewAdapter(var favoriteVocaGroupData: MutableLiveData<List
             holder.count.text = "개수 : ${group_No.toString()}"
         }
     }
-    //asdfsafsasdfdsafdas
     override fun getItemCount(): Int = favoriteVocaGroupData.value!!.size
 
     inner class ViewHolder(binding : ItemsFavoritevocaGroupBinding) : RecyclerView.ViewHolder(binding.root)
     {
-
         var name = binding.hobbyName
         var count = binding.hobbyCount
-
-
     }
 
 }
